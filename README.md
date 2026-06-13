@@ -59,3 +59,7 @@ GitHub Pages에 바로 올릴 수 있는 정적 웹페이지입니다.
   - jeongseo.html
   - kuro.html
   각 파일은 같은 앱을 로드하되 URL 파일명에 따라 해당 인물 화면을 바로 표시함. 인물 화면으로 이동할 때 주소도 함께 변경되도록 history 라우팅을 추가함.
+
+- v72: 영 페이지에서 next 아이콘을 눌러도 다음 텍스트가 나오지 않던 문제를 수정함.
+  원인: 영 페이지 문단은 `.young-step` 클래스를 쓰는데, v71의 공통 next 핸들러는 `.sequence-step`만 찾고 있었음.
+  수정: 공통 next/reset 함수가 `.sequence-step`이 없을 경우 `.young-step`을 fallback으로 처리하도록 변경함.

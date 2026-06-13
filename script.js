@@ -466,14 +466,17 @@ function resetScreenSequence(screenId) {
   const screen = document.getElementById(screenId);
   if (!screen) return;
 
-  const steps = Array.from(screen.querySelectorAll('.sequence-step'));
+  let steps = Array.from(screen.querySelectorAll('.sequence-step'));
+  if (!steps.length) {
+    steps = Array.from(screen.querySelectorAll('.young-step'));
+  }
   if (!steps.length) return;
 
   steps.forEach((step, index) => {
     step.classList.toggle('is-visible', index === 0);
   });
 
-  screen.querySelectorAll('.sequence-next-inline').forEach((button) => {
+  screen.querySelectorAll('.sequence-next-inline, .young-next-inline').forEach((button) => {
     button.classList.remove('is-used');
   });
 }
@@ -484,7 +487,11 @@ function showNextSequenceStep(clickedButton) {
 
   clickedButton.classList.add('is-used');
 
-  const steps = Array.from(screen.querySelectorAll('.sequence-step'));
+  let steps = Array.from(screen.querySelectorAll('.sequence-step'));
+  if (!steps.length) {
+    steps = Array.from(screen.querySelectorAll('.young-step'));
+  }
+
   const nextIndex = steps.findIndex((step) => !step.classList.contains('is-visible'));
 
   if (nextIndex === -1) return;
@@ -504,6 +511,7 @@ document.addEventListener('click', (event) => {
 
 document.addEventListener('DOMContentLoaded', () => {
   resetScreenSequence('yeonScreen');
+  resetScreenSequence('youngScreen');
 });
 
 
