@@ -63,3 +63,6 @@ GitHub Pages에 바로 올릴 수 있는 정적 웹페이지입니다.
 - v72: 영 페이지에서 next 아이콘을 눌러도 다음 텍스트가 나오지 않던 문제를 수정함.
   원인: 영 페이지 문단은 `.young-step` 클래스를 쓰는데, v71의 공통 next 핸들러는 `.sequence-step`만 찾고 있었음.
   수정: 공통 next/reset 함수가 `.sequence-step`이 없을 경우 `.young-step`을 fallback으로 처리하도록 변경함.
+
+- v73: GitHub Pages/브라우저 캐시 때문에 이전 script.js가 계속 로드될 수 있어 모든 HTML의 style.css/script.js 링크에 ?v=73을 붙임.
+  또한 영 페이지의 young-step 요소에 sequence-step을 런타임으로도 추가해 next 핸들러가 확실히 인식하도록 보강함.

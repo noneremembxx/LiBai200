@@ -553,3 +553,17 @@ document.addEventListener('DOMContentLoaded', () => {
     startProfileDocumentTyping();
   }
 });
+
+
+
+// v73: normalize Young page steps so the common next handler always sees them.
+document.addEventListener('DOMContentLoaded', () => {
+  const youngScreen = document.getElementById('youngScreen');
+  if (!youngScreen) return;
+
+  youngScreen.querySelectorAll('.young-step').forEach((step) => {
+    step.classList.add('sequence-step');
+  });
+
+  resetScreenSequence('youngScreen');
+});
