@@ -1,0 +1,2830 @@
+@font-face {
+  font-family: 'BookkMyungjo';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Lt.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BookkMyungjo';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --bg: #09344c;
+  --text: #f2fbff;
+  --moon-size: clamp(260px, 28vw, 500px);
+  --character-moon-size: min(86vw, 96svh);
+  --fade-time: 760ms;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  font-family: 'BookkMyungjo', 'Noto Serif CJK KR', 'Noto Serif CJK TC', 'Batang', serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+button {
+  font: inherit;
+}
+
+.stage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100svh;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(1.015);
+  transition: opacity var(--fade-time) ease, transform var(--fade-time) ease, visibility var(--fade-time) ease;
+}
+
+.screen.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+.screen-main {
+  grid-template-rows: 1fr auto auto 1fr;
+  row-gap: clamp(20px, 2.4vh, 36px);
+}
+
+.moon-button {
+  grid-row: 2;
+  display: block;
+  width: var(--moon-size);
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 220ms ease, filter 220ms ease, opacity 220ms ease;
+}
+
+.moon-button:hover,
+.moon-button:focus-visible {
+  transform: translateY(-2px) scale(1.01);
+  filter: brightness(1.08);
+  outline: none;
+}
+
+.moon-button:focus-visible {
+  box-shadow: 0 0 0 2px rgba(242, 251, 255, 0.35), 0 0 28px rgba(242, 251, 255, 0.24);
+}
+
+.moon {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 0 12px rgba(238, 255, 255, 0.42))
+    drop-shadow(0 0 34px rgba(207, 250, 255, 0.16));
+  user-select: none;
+  pointer-events: none;
+}
+
+
+
+
+.search-enter {
+  grid-row: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 220ms ease, opacity 220ms ease, filter 220ms ease;
+}
+
+.search-enter:hover,
+.search-enter:focus-visible {
+  opacity: 0.92;
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+  outline: none;
+}
+
+.search-enter-field {
+  min-width: 205px;
+  height: 38px;
+  padding: 0 18px 0 22px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #0a3952;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 8px 18px rgba(0, 0, 0, 0.14);
+}
+
+.search-enter-text {
+  display: inline-block;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: 'BookkMyungjo', 'Times New Roman', Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: #0a3952;
+  animation:
+    search-text-typing 1.35s steps(2, end) infinite,
+    search-text-flicker 0.58s steps(2, end) infinite;
+}
+
+.search-enter-caret {
+  font-size: 11px;
+  line-height: 1;
+  color: #0a3952;
+  transform: translateY(1px);
+}
+
+.search-enter-icon {
+  width: 26px;
+  height: 26px;
+  display: inline-grid;
+  place-items: center;
+}
+
+.search-enter-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: rgba(255, 255, 255, 0.96);
+  stroke-width: 1.6;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.14));
+}
+
+@media (max-width: 700px) {
+  .search-enter {
+    gap: 8px;
+  }
+
+  .search-enter-field {
+    min-width: 176px;
+    height: 34px;
+    padding: 0 16px 0 20px;
+    gap: 12px;
+  }
+
+  .search-enter-text {
+    font-size: 20px;
+  }
+
+  .search-enter-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .search-enter-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.screen-poem {
+  overflow: hidden;
+}
+
+.poem-wall {
+  position: absolute;
+  inset: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+  color: var(--text);
+  font-family: 'BookkMyungjo', 'Noto Serif CJK TC', 'Noto Serif CJK KR', 'Source Han Serif TC', 'Source Han Serif KR', 'Songti TC', 'Batang', serif;
+  font-size: clamp(25px, 1.72vw, 34px);
+  font-weight: 700;
+  line-height: 1.43;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  user-select: none;
+  animation: wall-flicker 2.6s infinite steps(2, end);
+}
+
+.poem-line {
+  width: max-content;
+  min-width: 100%;
+  text-shadow:
+    0 0 3px rgba(255, 255, 255, 0.32),
+    1px 0 0 rgba(255, 255, 255, 0.1),
+    -1px 0 0 rgba(177, 233, 255, 0.12);
+  animation: text-noise 1.8s infinite steps(2, end);
+}
+
+.poem-line:nth-child(2n) {
+  animation-duration: 2.1s;
+  animation-delay: -0.55s;
+}
+
+.poem-line:nth-child(3n) {
+  animation-duration: 1.45s;
+  animation-delay: -0.9s;
+}
+
+.noise-layer {
+  position: absolute;
+  inset: -20%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.19;
+  mix-blend-mode: screen;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.08) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 7px),
+    radial-gradient(circle at 18% 32%, rgba(255,255,255,0.18) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 76% 57%, rgba(255,255,255,0.16) 0 1px, transparent 1.3px);
+  background-size: auto, auto, 7px 7px, 11px 11px;
+  animation: noise-shift 0.22s infinite steps(2, end);
+}
+
+@keyframes text-noise {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0);
+    filter: blur(0);
+  }
+  18% {
+    opacity: 0.74;
+    transform: translate(-0.7px, 0.4px);
+    filter: blur(0.15px);
+  }
+  22% {
+    opacity: 1;
+    transform: translate(0.8px, -0.3px);
+  }
+  45% {
+    opacity: 0.88;
+    transform: translate(0, 0);
+  }
+  47% {
+    opacity: 0.57;
+    transform: translate(1.2px, 0.2px);
+  }
+  51% {
+    opacity: 1;
+    transform: translate(-0.6px, 0);
+  }
+  100% {
+    opacity: 0.94;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes wall-flicker {
+  0%, 100% {
+    opacity: 0.98;
+  }
+  37% {
+    opacity: 0.91;
+  }
+  38% {
+    opacity: 0.63;
+  }
+  39% {
+    opacity: 0.98;
+  }
+  78% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes noise-shift {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-2%, 1%);
+  }
+  50% {
+    transform: translate(1%, -2%);
+  }
+  75% {
+    transform: translate(2%, 1%);
+  }
+  100% {
+    transform: translate(-1%, 2%);
+  }
+}
+
+.screen-characters {
+  overflow: hidden;
+}
+
+.character-moon-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--character-moon-size);
+  height: var(--character-moon-size);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.character-moon {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  opacity: 0.3;
+  user-select: none;
+}
+
+.character-menu {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--character-moon-size);
+  height: var(--character-moon-size);
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.character-name {
+  position: absolute;
+  left: 50%;
+  min-width: 108px;
+  min-height: 44px;
+  padding: 4px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  font-size: clamp(18px, 1.35vw, 24px);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.18);
+  transition: background 180ms ease, box-shadow 180ms ease, transform 180ms ease, opacity 180ms ease;
+}
+
+.character-name:hover,
+.character-name:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.16);
+  transform: translate(-50%, -50%) scale(1.04);
+  outline: none;
+}
+
+.character-misuhui {
+  top: 31.8%;
+}
+
+.character-young {
+  top: 41.4%;
+}
+
+.character-yeon {
+  top: 51.0%;
+}
+
+.character-jeongseo {
+  top: 60.6%;
+}
+
+.character-kuro {
+  top: 70.2%;
+}
+
+.screen-detail {
+  text-align: center;
+  padding: 32px;
+}
+
+.screen-detail h1 {
+  margin: 0;
+  font-size: clamp(42px, 7vw, 92px);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.screen-detail p {
+  margin: 24px 0 0;
+  font-size: clamp(17px, 1.9vw, 24px);
+  opacity: 0.78;
+}
+
+.back-button {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 20;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  transition: background 180ms ease, transform 180ms ease, opacity 180ms ease;
+}
+
+.back-button:hover,
+.back-button:focus-visible {
+  background: rgba(255, 255, 255, 0.19);
+  transform: translateX(-2px);
+  outline: none;
+}
+
+@media (max-width: 700px) {
+  :root {
+    --moon-size: min(72vw, 340px);
+    --character-moon-size: min(110vw, 86svh);
+  }
+
+
+  .poem-wall {
+    inset: 18px 14px;
+    gap: 10px;
+    font-size: clamp(22px, 6vw, 31px);
+    line-height: 1.5;
+  }
+
+  .character-name {
+    font-size: clamp(17px, 4.4vw, 21px);
+    min-width: 92px;
+    min-height: 42px;
+  }
+
+  .back-button {
+    top: 16px;
+    left: 16px;
+    height: 40px;
+    padding: 0 13px;
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen,
+  .moon-button,
+  .enter-button,
+  .back-button,
+  .character-name {
+    transition: none;
+  }
+
+  .poem-wall,
+  .poem-line,
+  .noise-layer {
+    animation: none;
+  }
+}
+
+
+.screen-yeon {
+  display: block;
+  overflow-y: auto;
+  padding: 92px 0 64px;
+}
+
+.yeon-page {
+  width: min(1120px, calc(100vw - 120px));
+  margin: 72px auto 0;
+  color: var(--text);
+  font-size: 14pt;
+  font-weight: 700;
+  line-height: 1.48;
+  letter-spacing: -0.005em;
+  text-align: left;
+}
+
+.yeon-paragraph {
+  margin: 0 0 2rem;
+  font-size: 14pt;
+  line-height: 1.48;
+  opacity: 1;
+}
+
+.dialogue-row {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  column-gap: 38px;
+  align-items: start;
+  margin: 2rem 0 2rem;
+  font-size: 14pt;
+  line-height: 1.48;
+}
+
+.speaker,
+.dialogue-text {
+  font-size: 14pt;
+  line-height: 1.48;
+}
+
+.speaker {
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .screen-yeon {
+    padding-top: 78px;
+  }
+
+  .yeon-page {
+    width: min(100%, calc(100vw - 48px));
+    margin-top: 48px;
+    font-size: 14pt;
+    line-height: 1.55;
+  }
+
+  .yeon-paragraph,
+  .dialogue-row,
+  .speaker,
+  .dialogue-text {
+    font-size: 14pt;
+    line-height: 1.55;
+  }
+
+  .dialogue-row {
+    grid-template-columns: 60px 1fr;
+    column-gap: 18px;
+    margin: 1.5rem 0;
+  }
+}
+
+
+.moon-phase-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 38px 0 0;
+  padding-bottom: 4px;
+}
+
+.moon-phase {
+  width: clamp(58px, 7vw, 92px);
+  aspect-ratio: 1 / 1;
+  background-image: url("assets/moon-phases.png");
+  background-repeat: no-repeat;
+  background-size: 500% 100%;
+  background-position: 0 0;
+  opacity: 0.86;
+  image-rendering: pixelated;
+  filter:
+    drop-shadow(0 0 5px rgba(242, 251, 255, 0.34))
+    drop-shadow(0 0 14px rgba(242, 251, 255, 0.14));
+}
+
+.screen-yeon.is-active .moon-phase.is-animating {
+  animation:
+    moon-phase-change 2.4s steps(4, end) forwards,
+    moon-phase-flicker 0.36s steps(2, end) 0s 7;
+}
+
+@keyframes moon-phase-change {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes moon-phase-flicker {
+  0%, 100% {
+    opacity: 0.86;
+    transform: translateY(0);
+  }
+
+  28% {
+    opacity: 0.32;
+    transform: translateY(1px);
+  }
+
+  36% {
+    opacity: 0.98;
+    transform: translateY(-1px);
+  }
+
+  59% {
+    opacity: 0.48;
+  }
+
+  64% {
+    opacity: 0.9;
+  }
+}
+
+/* Yeon page: force every visible text element to 14pt. */
+.screen-yeon,
+.screen-yeon *,
+.screen-yeon .back-button {
+  font-size: 14pt !important;
+}
+
+@media (max-width: 700px) {
+  .moon-phase-wrap {
+    margin-top: 34px;
+  }
+
+  .moon-phase {
+    width: clamp(54px, 16vw, 82px);
+  }
+}
+
+
+.screen-misuhui {
+  display: block;
+  overflow-y: auto;
+  padding: 92px 0 64px;
+}
+
+.misuhui-page {
+  width: min(1120px, calc(100vw - 120px));
+  margin: 72px auto 0;
+  color: var(--text);
+  font-size: 14pt;
+  font-weight: 700;
+  line-height: 1.48;
+  letter-spacing: -0.005em;
+  text-align: left;
+}
+
+.misuhui-paragraph {
+  margin: 0 0 2rem;
+  font-size: 14pt;
+  line-height: 1.48;
+  opacity: 1;
+}
+
+.screen-misuhui .dialogue-row {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  column-gap: 38px;
+  align-items: start;
+  margin: 2rem 0 2rem;
+  font-size: 14pt;
+  line-height: 1.48;
+}
+
+.screen-misuhui .speaker,
+.screen-misuhui .dialogue-text {
+  font-size: 14pt;
+  line-height: 1.48;
+}
+
+.screen-misuhui .speaker {
+  white-space: nowrap;
+}
+
+.misuhui-moon {
+  width: clamp(58px, 7vw, 92px);
+  aspect-ratio: 1 / 1;
+  background-position: 0 0;
+  opacity: 0.9;
+}
+
+.screen-misuhui.is-active .misuhui-moon.is-animating {
+  animation: misuhui-moon-flicker 0.42s steps(2, end) infinite;
+}
+
+@keyframes misuhui-moon-flicker {
+  0%, 100% {
+    opacity: 0.92;
+    transform: translateY(0);
+  }
+
+  24% {
+    opacity: 0.34;
+    transform: translateY(1px);
+  }
+
+  40% {
+    opacity: 0.98;
+    transform: translateY(-1px);
+  }
+
+  68% {
+    opacity: 0.54;
+  }
+}
+
+/* Misuhui page: force every visible text element to 14pt. */
+.screen-misuhui,
+.screen-misuhui *,
+.screen-misuhui .back-button {
+  font-size: 14pt !important;
+}
+
+@media (max-width: 900px) {
+  .screen-misuhui {
+    padding-top: 78px;
+  }
+
+  .misuhui-page {
+    width: min(100%, calc(100vw - 48px));
+    margin-top: 48px;
+    font-size: 14pt;
+    line-height: 1.55;
+  }
+
+  .misuhui-paragraph,
+  .screen-misuhui .dialogue-row,
+  .screen-misuhui .speaker,
+  .screen-misuhui .dialogue-text {
+    font-size: 14pt;
+    line-height: 1.55;
+  }
+
+  .screen-misuhui .dialogue-row {
+    grid-template-columns: 60px 1fr;
+    column-gap: 18px;
+    margin: 1.5rem 0;
+  }
+
+  .misuhui-moon {
+    width: clamp(54px, 16vw, 82px);
+  }
+}
+
+
+.warning-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 6;
+  display: grid;
+  place-items: center;
+  min-width: 170px;
+  min-height: 96px;
+  padding: 22px 36px;
+  border: 1px solid rgba(255, 0, 0, 0.72);
+  background:
+    linear-gradient(180deg, rgba(18, 18, 18, 0.98), rgba(0, 0, 0, 0.98));
+  color: #ff1d1d;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  font-size: clamp(24px, 2vw, 34px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  box-shadow:
+    0 0 0 1px rgba(255, 0, 0, 0.28) inset,
+    0 0 18px rgba(255, 0, 0, 0.42),
+    0 14px 34px rgba(0, 0, 0, 0.72);
+  text-shadow:
+    0 0 5px rgba(255, 0, 0, 0.9),
+    0 0 14px rgba(255, 0, 0, 0.42);
+  animation: warning-pop 420ms ease both, warning-pulse 1.05s steps(2, end) infinite 420ms;
+}
+
+.warning-card:hover,
+.warning-card:focus-visible {
+  outline: none;
+  background:
+    linear-gradient(180deg, rgba(32, 0, 0, 0.99), rgba(0, 0, 0, 0.99));
+  transform: translate(-50%, -50%) scale(1.035);
+  box-shadow:
+    0 0 0 1px rgba(255, 0, 0, 0.52) inset,
+    0 0 26px rgba(255, 0, 0, 0.68),
+    0 14px 34px rgba(0, 0, 0, 0.78);
+}
+
+@keyframes warning-pop {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.88);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes warning-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.74;
+  }
+}
+
+.screen-profile {
+  display: block;
+  overflow-y: auto;
+  padding: 92px 0 84px;
+  text-align: left;
+  background: #000;
+}
+
+.profile-document {
+  width: min(1120px, calc(100vw - 120px));
+  margin: 0 auto;
+  color: var(--text);
+  font-size: 14pt;
+  font-weight: 700;
+  line-height: 1.68;
+  letter-spacing: -0.01em;
+  word-break: keep-all;
+  animation: profile-text-flicker 4.8s ease-in-out infinite;
+  text-shadow:
+    0 0 4px rgba(242, 251, 255, 0.42),
+    0 0 12px rgba(242, 251, 255, 0.12);
+}
+
+.profile-document p {
+  margin: 0 0 1.55rem;
+}
+
+.profile-document h2 {
+  margin: 2.35rem 0 1rem;
+  font-size: 17pt;
+  font-weight: 700;
+  line-height: 1.55;
+  letter-spacing: 0;
+  color: #ff3a3a;
+  text-shadow:
+    0 0 4px rgba(255, 0, 0, 0.55),
+    0 0 12px rgba(255, 0, 0, 0.18);
+}
+
+.profile-document,
+.profile-document *,
+.screen-profile .back-button {
+  font-size: 14pt !important;
+}
+
+.profile-document h2 {
+  font-size: 17pt !important;
+}
+
+@media (max-width: 900px) {
+  .screen-profile {
+    padding: 78px 0 64px;
+  }
+
+  .profile-document {
+    width: min(100%, calc(100vw - 48px));
+    line-height: 1.72;
+  }
+
+  .warning-card {
+    min-width: 132px;
+    min-height: 78px;
+    padding: 18px 26px;
+    font-size: clamp(22px, 6vw, 28px);
+  }
+}
+
+
+.screen-profile .back-button {
+  background: rgba(0, 0, 0, 0.92);
+  border: 1px solid rgba(255, 0, 0, 0.48);
+  color: #ff3a3a;
+  box-shadow: 0 0 14px rgba(255, 0, 0, 0.18);
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.55);
+}
+
+.screen-profile .back-button:hover,
+.screen-profile .back-button:focus-visible {
+  background: rgba(30, 0, 0, 0.96);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.34);
+}
+
+@keyframes profile-text-flicker {
+  0%, 100% {
+    opacity: 0.96;
+    filter: brightness(1);
+  }
+
+  19% {
+    opacity: 0.88;
+    filter: brightness(0.92);
+  }
+
+  21% {
+    opacity: 0.58;
+    filter: brightness(0.72);
+  }
+
+  23% {
+    opacity: 0.94;
+    filter: brightness(1.05);
+  }
+
+  54% {
+    opacity: 0.82;
+    filter: brightness(0.88);
+  }
+
+  56% {
+    opacity: 0.42;
+    filter: brightness(0.62);
+  }
+
+  58% {
+    opacity: 0.91;
+    filter: brightness(1);
+  }
+
+  79% {
+    opacity: 0.74;
+    filter: brightness(0.82);
+  }
+}
+
+
+.profile-document .profile-report-title {
+  color: #ff3a3a !important;
+  font-size: 16pt !important;
+  font-weight: 700;
+  line-height: 1.55;
+  margin: 0 0 1.8rem;
+  text-shadow:
+    0 0 4px rgba(255, 0, 0, 0.55),
+    0 0 12px rgba(255, 0, 0, 0.18);
+}
+
+
+@keyframes main-title-flicker {
+  0%, 100% {
+    opacity: 1;
+    text-shadow:
+      0 0 8px rgba(255, 255, 255, 0.26),
+      0 0 18px rgba(242, 251, 255, 0.16);
+  }
+
+  19% {
+    opacity: 0.72;
+    text-shadow:
+      0 0 4px rgba(255, 255, 255, 0.18);
+  }
+
+  21% {
+    opacity: 0.36;
+    text-shadow: none;
+  }
+
+  24% {
+    opacity: 0.95;
+    text-shadow:
+      0 0 10px rgba(255, 255, 255, 0.32),
+      0 0 22px rgba(242, 251, 255, 0.18);
+  }
+
+  68% {
+    opacity: 0.78;
+  }
+
+  70% {
+    opacity: 0.46;
+  }
+
+  73% {
+    opacity: 1;
+  }
+}
+
+
+@keyframes search-text-typing {
+  0%, 18% {
+    width: 0;
+  }
+
+  42%, 64% {
+    width: 1.15em;
+  }
+
+  76%, 100% {
+    width: 2.35em;
+  }
+}
+
+@keyframes search-text-flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  21% {
+    opacity: 0.52;
+  }
+
+  28% {
+    opacity: 0.95;
+  }
+
+  61% {
+    opacity: 0.42;
+  }
+
+  68% {
+    opacity: 1;
+  }
+}
+
+
+.screen-young {
+  display: block;
+  overflow-y: auto;
+  padding: 92px 0 64px;
+}
+
+.young-page {
+  width: min(1120px, calc(100vw - 120px));
+  margin: 72px auto 0;
+  color: var(--text);
+  font-size: 14pt;
+  font-weight: 700;
+  line-height: 1.48;
+  letter-spacing: -0.005em;
+  text-align: left;
+}
+
+.young-paragraph {
+  margin: 0 0 2rem;
+  font-size: 14pt;
+  line-height: 1.48;
+  opacity: 1;
+}
+
+.screen-young .dialogue-row {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  column-gap: 38px;
+  align-items: start;
+  margin: 2rem 0 2rem;
+  font-size: 14pt;
+  line-height: 1.48;
+}
+
+.screen-young .speaker,
+.screen-young .dialogue-text {
+  font-size: 14pt;
+  line-height: 1.48;
+}
+
+.screen-young .speaker {
+  white-space: nowrap;
+}
+
+.young-moon {
+  width: clamp(58px, 7vw, 92px);
+  aspect-ratio: 1 / 1;
+  background-image: url("assets/moon-phases-young.png");
+  background-repeat: no-repeat;
+  background-size: 300% 100%;
+  background-position: 0 0;
+  opacity: 0.86;
+  image-rendering: pixelated;
+  filter:
+    drop-shadow(0 0 5px rgba(242, 251, 255, 0.34))
+    drop-shadow(0 0 14px rgba(242, 251, 255, 0.14));
+}
+
+.screen-young.is-active .young-moon.is-animating {
+  animation:
+    young-moon-phase-change 2.2s steps(2, end) forwards,
+    young-moon-flicker 0.48s steps(2, end) 0s 6;
+}
+
+@keyframes young-moon-phase-change {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes young-moon-flicker {
+  0%, 100% {
+    opacity: 0.88;
+    transform: translateY(0);
+  }
+
+  24% {
+    opacity: 0.34;
+    transform: translateY(1px);
+  }
+
+  41% {
+    opacity: 0.98;
+    transform: translateY(-1px);
+  }
+
+  68% {
+    opacity: 0.56;
+  }
+}
+
+.screen-young,
+.screen-young *,
+.screen-young .back-button {
+  font-size: 14pt !important;
+}
+
+@media (max-width: 900px) {
+  .screen-young {
+    padding-top: 78px;
+  }
+
+  .young-page {
+    width: min(100%, calc(100vw - 48px));
+    margin-top: 48px;
+    font-size: 14pt;
+    line-height: 1.55;
+  }
+
+  .young-paragraph,
+  .screen-young .dialogue-row,
+  .screen-young .speaker,
+  .screen-young .dialogue-text {
+    font-size: 14pt;
+    line-height: 1.55;
+  }
+
+  .screen-young .dialogue-row {
+    grid-template-columns: 60px 1fr;
+    column-gap: 18px;
+    margin: 1.5rem 0;
+  }
+
+  .young-moon {
+    width: clamp(54px, 16vw, 82px);
+  }
+}
+
+
+/* Character prose pages: justify all body/dialogue text. */
+.yeon-page,
+.misuhui-page,
+.young-page {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.yeon-paragraph,
+.misuhui-paragraph,
+.young-paragraph,
+.screen-yeon .dialogue-text,
+.screen-misuhui .dialogue-text,
+.screen-young .dialogue-text {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.screen-yeon .speaker,
+.screen-misuhui .speaker,
+.screen-young .speaker {
+  text-align: left;
+}
+
+
+.phase-banner {
+  display: block;
+  width: clamp(280px, 34vw, 560px);
+  max-width: 92%;
+  height: auto;
+  margin: 0 auto 42px;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+  filter:
+    drop-shadow(0 0 5px rgba(242, 251, 255, 0.22))
+    drop-shadow(0 0 14px rgba(242, 251, 255, 0.1));
+}
+
+.detail-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-placeholder .phase-banner {
+  margin-bottom: 34px;
+}
+
+@media (max-width: 700px) {
+  .phase-banner {
+    width: min(76vw, 420px);
+    margin-bottom: 30px;
+  }
+}
+
+
+.misuhui-single-moon {
+  width: clamp(86px, 9vw, 132px);
+  max-width: 38%;
+  margin-bottom: 42px;
+  animation: misuhui-top-moon-flicker 1.35s steps(2, end) infinite;
+  filter:
+    drop-shadow(0 0 6px rgba(242, 251, 255, 0.35))
+    drop-shadow(0 0 16px rgba(242, 251, 255, 0.16));
+}
+
+@keyframes misuhui-top-moon-flicker {
+  0%, 100% {
+    opacity: 0.96;
+    transform: translateY(0);
+  }
+
+  28% {
+    opacity: 0.38;
+    transform: translateY(1px);
+  }
+
+  43% {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+
+  72% {
+    opacity: 0.58;
+  }
+}
+
+@media (max-width: 700px) {
+  .misuhui-single-moon {
+    width: clamp(74px, 20vw, 108px);
+    max-width: 46%;
+    margin-bottom: 30px;
+  }
+}
+
+
+.young-single-moon {
+  width: clamp(86px, 9vw, 132px);
+  max-width: 38%;
+  margin-bottom: 42px;
+  animation: young-top-moon-flicker 1.55s steps(2, end) infinite;
+  filter:
+    drop-shadow(0 0 6px rgba(242, 251, 255, 0.35))
+    drop-shadow(0 0 16px rgba(242, 251, 255, 0.16));
+}
+
+@keyframes young-top-moon-flicker {
+  0%, 100% {
+    opacity: 0.96;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 0.42;
+    transform: translateY(1px);
+  }
+
+  46% {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+
+  74% {
+    opacity: 0.60;
+  }
+}
+
+@media (max-width: 700px) {
+  .young-single-moon {
+    width: clamp(74px, 20vw, 108px);
+    max-width: 46%;
+    margin-bottom: 30px;
+  }
+}
+
+
+.misuhui-phase-banner {
+  width: clamp(280px, 34vw, 560px);
+  max-width: 92%;
+  height: auto;
+  margin: 0 auto 42px;
+  object-fit: contain;
+  animation: misuhui-top-moon-flicker 1.35s steps(2, end) infinite;
+  filter:
+    drop-shadow(0 0 6px rgba(242, 251, 255, 0.18))
+    drop-shadow(0 0 16px rgba(242, 251, 255, 0.08));
+}
+
+@media (max-width: 700px) {
+  .misuhui-phase-banner {
+    width: min(76vw, 420px);
+    margin-bottom: 30px;
+  }
+}
+
+
+.phase-banner-wrapper {
+  position: relative;
+  width: clamp(280px, 34vw, 560px);
+  max-width: 92%;
+  margin: 0 auto 42px;
+}
+
+.phase-banner-wrapper .phase-banner {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  display: block;
+}
+
+.misuhui-phase-banner {
+  animation: none !important;
+  filter:
+    drop-shadow(0 0 5px rgba(242, 251, 255, 0.08))
+    drop-shadow(0 0 12px rgba(242, 251, 255, 0.04));
+}
+
+.misuhui-phase-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  animation: misuhui-crescent-flicker 1.35s steps(2, end) infinite;
+  filter:
+    drop-shadow(0 0 6px rgba(242, 251, 255, 0.35))
+    drop-shadow(0 0 16px rgba(242, 251, 255, 0.16));
+}
+
+@keyframes misuhui-crescent-flicker {
+  0%, 100% {
+    opacity: 0.98;
+    transform: translateY(0);
+  }
+
+  28% {
+    opacity: 0.34;
+    transform: translateY(1px);
+  }
+
+  43% {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+
+  72% {
+    opacity: 0.56;
+  }
+}
+
+@media (max-width: 700px) {
+  .phase-banner-wrapper {
+    width: min(76vw, 420px);
+    margin-bottom: 30px;
+  }
+}
+
+
+/* Stronger visible blink for the Misuhui crescent overlay. */
+.misuhui-phase-overlay {
+  animation: misuhui-crescent-visible-flicker 1.15s steps(2, end) infinite !important;
+}
+
+@keyframes misuhui-crescent-visible-flicker {
+  0%, 100% {
+    opacity: 1;
+    filter:
+      drop-shadow(0 0 7px rgba(242, 251, 255, 0.5))
+      drop-shadow(0 0 18px rgba(242, 251, 255, 0.22));
+  }
+
+  45% {
+    opacity: 0.05;
+    filter: none;
+  }
+
+  55% {
+    opacity: 1;
+  }
+
+  78% {
+    opacity: 0.18;
+    filter: none;
+  }
+}
+
+
+.young-phase-banner {
+  animation: none !important;
+  filter:
+    drop-shadow(0 0 5px rgba(242, 251, 255, 0.08))
+    drop-shadow(0 0 12px rgba(242, 251, 255, 0.04));
+}
+
+.young-phase-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  animation: young-quarter-visible-flicker 1.25s steps(2, end) infinite;
+  filter:
+    drop-shadow(0 0 7px rgba(242, 251, 255, 0.5))
+    drop-shadow(0 0 18px rgba(242, 251, 255, 0.22));
+}
+
+@keyframes young-quarter-visible-flicker {
+  0%, 100% {
+    opacity: 1;
+    filter:
+      drop-shadow(0 0 7px rgba(242, 251, 255, 0.5))
+      drop-shadow(0 0 18px rgba(242, 251, 255, 0.22));
+  }
+
+  44% {
+    opacity: 0.05;
+    filter: none;
+  }
+
+  55% {
+    opacity: 1;
+  }
+
+  79% {
+    opacity: 0.18;
+    filter: none;
+  }
+}
+
+
+/* v36: corrected Young quarter-moon blink.
+   The static base no longer contains the highlighted moon pixels; only this
+   overlay contains them, so the moon actually disappears while blinking. */
+.young-phase-banner {
+  animation: none !important;
+}
+
+.young-phase-overlay {
+  animation: young-quarter-clean-flicker 1.25s steps(2, end) infinite !important;
+}
+
+@keyframes young-quarter-clean-flicker {
+  0%, 100% {
+    opacity: 1;
+    filter:
+      drop-shadow(0 0 7px rgba(242, 251, 255, 0.5))
+      drop-shadow(0 0 18px rgba(242, 251, 255, 0.22));
+  }
+
+  45% {
+    opacity: 0;
+    filter: none;
+  }
+
+  55% {
+    opacity: 1;
+  }
+
+  78% {
+    opacity: 0;
+    filter: none;
+  }
+}
+
+
+.young-step {
+  display: none;
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.young-step.is-visible {
+  display: block;
+  animation: young-step-fade-in 420ms ease forwards;
+}
+
+.dialogue-row.young-step.is-visible {
+  display: grid;
+}
+
+@keyframes young-step-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.young-next-button {
+  display: block;
+  width: 14pt;
+  height: 14pt;
+  margin: 1.35rem auto 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: opacity 180ms ease, transform 180ms ease, filter 180ms ease;
+}
+
+.young-next-button img {
+  display: block;
+  width: 14pt;
+  height: 14pt;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+.young-next-button:hover,
+.young-next-button:focus-visible {
+  opacity: 1;
+  transform: translateY(1px);
+  filter: drop-shadow(0 0 6px rgba(242, 251, 255, 0.28));
+  outline: none;
+}
+
+.young-next-button.is-hidden {
+  display: none;
+}
+
+
+/* v38: Young page next icon appears inline at the end of each visible paragraph/dialogue. */
+.young-next-button {
+  display: none !important;
+}
+
+.young-next-inline {
+  display: inline-flex;
+  width: 20pt !important;
+  height: 20pt !important;
+  min-width: 20pt !important;
+  min-height: 20pt !important;
+  margin: 0 0 0 0.38em;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  vertical-align: -0.28em;
+  opacity: 0.96;
+  transform: translateY(0);
+  filter:
+    drop-shadow(0 0 4px rgba(242, 251, 255, 0.58))
+    drop-shadow(0 0 10px rgba(242, 251, 255, 0.22));
+  animation: young-next-inline-pulse 1.2s steps(2, end) infinite;
+}
+
+.young-next-inline img {
+  display: block;
+  width: 20pt !important;
+  height: 20pt !important;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+.young-next-inline:hover,
+.young-next-inline:focus-visible {
+  opacity: 1;
+  transform: translateY(1px);
+  outline: none;
+}
+
+.young-next-inline.is-used {
+  display: none !important;
+}
+
+@keyframes young-next-inline-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.54;
+  }
+}
+
+
+/* v39: sequential paragraph reveal format shared by Misuhui, Young, Yeon, Jeongseo, and Kuro. */
+.sequence-step {
+  display: none;
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.sequence-step.is-visible {
+  display: block;
+  animation: sequence-step-fade-in 420ms ease forwards;
+}
+
+.dialogue-row.sequence-step.is-visible {
+  display: grid;
+}
+
+@keyframes sequence-step-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sequence-next-inline {
+  display: inline-flex;
+  width: 20pt !important;
+  height: 20pt !important;
+  min-width: 20pt !important;
+  min-height: 20pt !important;
+  margin: 0 0 0 0.38em;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  vertical-align: -0.28em;
+  opacity: 0.96;
+  transform: translateY(0);
+  filter:
+    drop-shadow(0 0 4px rgba(242, 251, 255, 0.58))
+    drop-shadow(0 0 10px rgba(242, 251, 255, 0.22));
+  animation: sequence-next-inline-pulse 1.2s steps(2, end) infinite;
+}
+
+.sequence-next-inline img {
+  display: block;
+  width: 20pt !important;
+  height: 20pt !important;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+.sequence-next-inline:hover,
+.sequence-next-inline:focus-visible {
+  opacity: 1;
+  transform: translateY(1px);
+  outline: none;
+}
+
+.sequence-next-inline.is-used {
+  display: none !important;
+}
+
+@keyframes sequence-next-inline-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.54;
+  }
+}
+
+/* Preserve the Young-page behavior with the unified icon class. */
+.young-next-inline {
+  display: none !important;
+}
+
+
+
+  45% {
+    opacity: 0;
+    filter: none;
+  }
+
+  55% {
+    opacity: 1;
+  }
+
+  78% {
+    opacity: 0;
+    filter: none;
+  }
+}
+
+
+/* v42: Yeon page full moon blink fix */
+.yeon-phase-wrapper {
+  position: relative;
+  display: block;
+  width: min(900px, 100%);
+  margin: 0 auto;
+}
+
+.yeon-phase-banner,
+.yeon-phase-overlay {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.yeon-phase-banner {
+  position: relative;
+  z-index: 1;
+}
+
+.yeon-phase-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 1;
+  animation: yeon-fullmoon-flicker 1.2s steps(2, end) infinite;
+  will-change: opacity, filter;
+  filter:
+    drop-shadow(0 0 7px rgba(242, 251, 255, 0.60))
+    drop-shadow(0 0 14px rgba(242, 251, 255, 0.28));
+}
+
+@keyframes yeon-fullmoon-flicker {
+  0%, 16%, 34%, 52%, 70%, 88%, 100% {
+    opacity: 1;
+  }
+
+  8%, 26%, 44%, 62%, 80% {
+    opacity: 0;
+    filter: none;
+  }
+}
+
+
+/* v44: Yeon moon phase fix.
+   Base keeps every black moon phase. Overlay contains only the white full-moon highlight. */
+.yeon-phase-wrapper {
+  position: relative;
+  display: block;
+  width: min(900px, 100%);
+  margin: 0 auto;
+}
+
+.yeon-phase-banner,
+.yeon-phase-overlay {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.yeon-phase-banner {
+  position: relative;
+  z-index: 1;
+}
+
+.yeon-phase-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  animation: yeon-fullmoon-flicker-v44 1.25s steps(2, end) infinite;
+  filter:
+    drop-shadow(0 0 7px rgba(242, 251, 255, 0.60))
+    drop-shadow(0 0 14px rgba(242, 251, 255, 0.28));
+}
+
+@keyframes yeon-fullmoon-flicker-v44 {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  45% {
+    opacity: 0;
+    filter: none;
+  }
+
+  55% {
+    opacity: 1;
+  }
+
+  78% {
+    opacity: 0;
+    filter: none;
+  }
+}
+
+
+/* v46: match Yeon page moon-phase image size with Misuhui/Young pages. */
+.yeon-page .yeon-phase-wrapper,
+.yeon-page .phase-banner-wrapper.yeon-phase-wrapper {
+  position: relative !important;
+  display: block !important;
+  width: clamp(280px, 34vw, 560px) !important;
+  max-width: 92% !important;
+  margin: 0 auto 42px !important;
+}
+
+.yeon-page .yeon-phase-banner,
+.yeon-page .yeon-phase-overlay {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+
+.yeon-page .yeon-phase-banner {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.yeon-page .yeon-phase-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 700px) {
+  .yeon-page .yeon-phase-wrapper,
+  .yeon-page .phase-banner-wrapper.yeon-phase-wrapper {
+    width: min(76vw, 420px) !important;
+    margin-bottom: 30px !important;
+  }
+}
+
+
+/* v47: Jeongseo page content and moon-phase banner. */
+.screen-jeongseo {
+  display: block;
+  overflow-y: auto;
+  padding: 92px 0 64px;
+}
+
+.jeongseo-page {
+  width: min(1120px, calc(100vw - 120px));
+  margin: 72px auto 0;
+  color: var(--text);
+  font-size: 14pt;
+  font-weight: 700;
+  line-height: 1.48;
+  letter-spacing: -0.005em;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.jeongseo-paragraph {
+  margin: 0 0 2rem;
+  font-size: 14pt;
+  line-height: 1.48;
+  opacity: 1;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.screen-jeongseo .dialogue-row {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  column-gap: 38px;
+  align-items: start;
+  margin: 2rem 0 2rem;
+  font-size: 14pt;
+  line-height: 1.48;
+}
+
+.screen-jeongseo .speaker,
+.screen-jeongseo .dialogue-text {
+  font-size: 14pt;
+  line-height: 1.48;
+}
+
+.screen-jeongseo .speaker {
+  white-space: nowrap;
+  text-align: left;
+}
+
+.screen-jeongseo .dialogue-text {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.jeongseo-page .jeongseo-phase-wrapper,
+.jeongseo-page .phase-banner-wrapper.jeongseo-phase-wrapper {
+  position: relative !important;
+  display: block !important;
+  width: clamp(280px, 34vw, 560px) !important;
+  max-width: 92% !important;
+  margin: 0 auto 42px !important;
+}
+
+.jeongseo-page .jeongseo-phase-banner,
+.jeongseo-page .jeongseo-phase-overlay {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+
+.jeongseo-page .jeongseo-phase-banner {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.jeongseo-page .jeongseo-phase-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+  animation: jeongseo-phase-flicker 1.25s steps(2, end) infinite;
+  filter:
+    drop-shadow(0 0 7px rgba(242, 251, 255, 0.60))
+    drop-shadow(0 0 14px rgba(242, 251, 255, 0.28));
+}
+
+@keyframes jeongseo-phase-flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  45% {
+    opacity: 0;
+    filter: none;
+  }
+
+  55% {
+    opacity: 1;
+  }
+
+  78% {
+    opacity: 0;
+    filter: none;
+  }
+}
+
+.screen-jeongseo,
+.screen-jeongseo *,
+.screen-jeongseo .back-button {
+  font-size: 14pt !important;
+}
+
+@media (max-width: 900px) {
+  .screen-jeongseo {
+    padding-top: 78px;
+  }
+
+  .jeongseo-page {
+    width: min(100%, calc(100vw - 48px));
+    margin-top: 48px;
+    font-size: 14pt;
+    line-height: 1.55;
+  }
+
+  .jeongseo-paragraph,
+  .screen-jeongseo .dialogue-row,
+  .screen-jeongseo .speaker,
+  .screen-jeongseo .dialogue-text {
+    font-size: 14pt;
+    line-height: 1.55;
+  }
+
+  .screen-jeongseo .dialogue-row {
+    grid-template-columns: 60px 1fr;
+    column-gap: 18px;
+    margin: 1.5rem 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .jeongseo-page .jeongseo-phase-wrapper,
+  .jeongseo-page .phase-banner-wrapper.jeongseo-phase-wrapper {
+    width: min(76vw, 420px) !important;
+    margin-bottom: 30px !important;
+  }
+}
+
+
+/* v49: Jeongseo moon phase cleanup.
+   The blinking lower-half moon is removed from the static base layer,
+   so it no longer appears as a doubled/dark stacked image. */
+.jeongseo-page .jeongseo-phase-banner {
+  filter: none !important;
+}
+
+.jeongseo-page .jeongseo-phase-overlay {
+  filter:
+    drop-shadow(0 0 4px rgba(242, 251, 255, 0.38))
+    drop-shadow(0 0 9px rgba(242, 251, 255, 0.14)) !important;
+}
+
+
+/* v50: soften Jeongseo static black moon phases so they match other pages better. */
+.jeongseo-page .jeongseo-phase-banner {
+  opacity: 0.72 !important;
+  filter:
+    drop-shadow(0 0 5px rgba(242, 251, 255, 0.08))
+    drop-shadow(0 0 12px rgba(242, 251, 255, 0.04)) !important;
+}
+
+.jeongseo-page .jeongseo-phase-overlay {
+  opacity: 1 !important;
+}
+
+
+/* v51: rebuild Jeongseo phase assets from the new provided image.
+   Static base shows all moon phases in black; only the highlighted waning-half moon
+   is isolated in the overlay and blinks. Size matches other character pages. */
+.jeongseo-page .jeongseo-phase-wrapper,
+.jeongseo-page .phase-banner-wrapper.jeongseo-phase-wrapper {
+  width: clamp(280px, 34vw, 560px) !important;
+  max-width: 92% !important;
+  margin: 0 auto 42px !important;
+}
+
+.jeongseo-page .jeongseo-phase-banner,
+.jeongseo-page .jeongseo-phase-overlay {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+.jeongseo-page .jeongseo-phase-banner {
+  opacity: 1 !important;
+  filter:
+    drop-shadow(0 0 5px rgba(242, 251, 255, 0.08))
+    drop-shadow(0 0 12px rgba(242, 251, 255, 0.04)) !important;
+}
+
+.jeongseo-page .jeongseo-phase-overlay {
+  animation: jeongseo-phase-clean-flicker 1.25s steps(2, end) infinite !important;
+  opacity: 1 !important;
+  filter:
+    drop-shadow(0 0 7px rgba(242, 251, 255, 0.48))
+    drop-shadow(0 0 16px rgba(242, 251, 255, 0.18)) !important;
+}
+
+@keyframes jeongseo-phase-clean-flicker {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 0; filter: none; }
+  55% { opacity: 1; }
+  78% { opacity: 0.14; filter: none; }
+}
+
+@media (max-width: 700px) {
+  .jeongseo-page .jeongseo-phase-wrapper,
+  .jeongseo-page .phase-banner-wrapper.jeongseo-phase-wrapper {
+    width: min(76vw, 420px) !important;
+    margin-bottom: 30px !important;
+  }
+}
+
+
+/* v52: Jeongseo moon phase rebuilt without distortion.
+   The source image is preserved by aspect ratio; only the highlighted lower-half moon blinks. */
+.jeongseo-page .jeongseo-phase-wrapper,
+.jeongseo-page .phase-banner-wrapper.jeongseo-phase-wrapper {
+  position: relative !important;
+  display: block !important;
+  width: clamp(280px, 34vw, 560px) !important;
+  max-width: 92% !important;
+  margin: 0 auto 42px !important;
+}
+
+.jeongseo-page .jeongseo-phase-banner,
+.jeongseo-page .jeongseo-phase-overlay {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+
+.jeongseo-page .jeongseo-phase-banner {
+  position: relative !important;
+  z-index: 1 !important;
+  opacity: 1 !important;
+  filter:
+    drop-shadow(0 0 5px rgba(242, 251, 255, 0.08))
+    drop-shadow(0 0 12px rgba(242, 251, 255, 0.04)) !important;
+}
+
+.jeongseo-page .jeongseo-phase-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  animation: jeongseo-clean-blink-v52 1.25s steps(2, end) infinite !important;
+  filter:
+    drop-shadow(0 0 7px rgba(242, 251, 255, 0.48))
+    drop-shadow(0 0 16px rgba(242, 251, 255, 0.18)) !important;
+}
+
+@keyframes jeongseo-clean-blink-v52 {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  45% {
+    opacity: 0;
+    filter: none;
+  }
+
+  55% {
+    opacity: 1;
+  }
+
+  78% {
+    opacity: 0;
+    filter: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .jeongseo-page .jeongseo-phase-wrapper,
+  .jeongseo-page .phase-banner-wrapper.jeongseo-phase-wrapper {
+    width: min(76vw, 420px) !important;
+    margin-bottom: 30px !important;
+  }
+}
+
+
+/* v53: make Jeongseo highlighted moon blink via JS class toggle for reliable rendering */
+.jeongseo-page .jeongseo-phase-overlay {
+  animation: none !important;
+  opacity: 1 !important;
+  transition: opacity 0.28s ease !important;
+}
+
+.jeongseo-page .jeongseo-phase-overlay.blink-off {
+  opacity: 0 !important;
+  filter: none !important;
+}
+
+
+/* v54: Kuro page content format. */
+.screen-kuro {
+  display: block;
+  overflow-y: auto;
+  padding: 92px 0 64px;
+}
+
+.kuro-page {
+  width: min(1120px, calc(100vw - 120px));
+  margin: 72px auto 0;
+  color: var(--text);
+  font-size: 14pt;
+  font-weight: 700;
+  line-height: 1.48;
+  letter-spacing: -0.005em;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.kuro-paragraph {
+  margin: 0 0 2rem;
+  font-size: 14pt;
+  line-height: 1.48;
+  opacity: 1;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.screen-kuro .dialogue-row {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  column-gap: 38px;
+  align-items: start;
+  margin: 2rem 0 2rem;
+  font-size: 14pt;
+  line-height: 1.48;
+}
+
+.screen-kuro .speaker,
+.screen-kuro .dialogue-text {
+  font-size: 14pt;
+  line-height: 1.48;
+}
+
+.screen-kuro .speaker {
+  white-space: nowrap;
+  text-align: left;
+}
+
+.screen-kuro .dialogue-text {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.kuro-page .kuro-phase-wrapper,
+.kuro-page .phase-banner-wrapper.kuro-phase-wrapper {
+  position: relative !important;
+  display: block !important;
+  width: clamp(280px, 34vw, 560px) !important;
+  max-width: 92% !important;
+  margin: 0 auto 42px !important;
+}
+
+.kuro-page .kuro-phase-banner {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+  filter:
+    drop-shadow(0 0 5px rgba(242, 251, 255, 0.08))
+    drop-shadow(0 0 12px rgba(242, 251, 255, 0.04));
+}
+
+.screen-kuro,
+.screen-kuro *,
+.screen-kuro .back-button {
+  font-size: 14pt !important;
+}
+
+@media (max-width: 900px) {
+  .screen-kuro {
+    padding-top: 78px;
+  }
+
+  .kuro-page {
+    width: min(100%, calc(100vw - 48px));
+    margin-top: 48px;
+    font-size: 14pt;
+    line-height: 1.55;
+  }
+
+  .kuro-paragraph,
+  .screen-kuro .dialogue-row,
+  .screen-kuro .speaker,
+  .screen-kuro .dialogue-text {
+    font-size: 14pt;
+    line-height: 1.55;
+  }
+
+  .screen-kuro .dialogue-row {
+    grid-template-columns: 60px 1fr;
+    column-gap: 18px;
+    margin: 1.5rem 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .kuro-page .kuro-phase-wrapper,
+  .kuro-page .phase-banner-wrapper.kuro-phase-wrapper {
+    width: min(76vw, 420px) !important;
+    margin-bottom: 30px !important;
+  }
+}
+
+
+/* v55: Kuro page phase banner uses provided image, with only the black full moon blinking. */
+.kuro-page .kuro-phase-wrapper,
+.kuro-page .phase-banner-wrapper.kuro-phase-wrapper {
+  position: relative !important;
+  display: block !important;
+  width: clamp(280px, 34vw, 560px) !important;
+  max-width: 92% !important;
+  margin: 0 auto 42px !important;
+}
+
+.kuro-page .kuro-phase-banner,
+.kuro-page .kuro-phase-overlay {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+
+.kuro-page .kuro-phase-banner {
+  position: relative !important;
+  z-index: 1 !important;
+  filter: drop-shadow(0 0 5px rgba(242,251,255,0.06)) drop-shadow(0 0 12px rgba(242,251,255,0.035));
+}
+
+.kuro-page .kuro-phase-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+  opacity: 1;
+}
+
+.kuro-page .kuro-phase-overlay.blink-off {
+  opacity: 0 !important;
+}
+
+@media (max-width: 700px) {
+  .kuro-page .kuro-phase-wrapper,
+  .kuro-page .phase-banner-wrapper.kuro-phase-wrapper {
+    width: min(76vw, 420px) !important;
+    margin-bottom: 30px !important;
+  }
+}
+
+
+/* v61: unify all character-page moon-phase blink speed, position, and spacing. */
+:root {
+  --character-phase-width: clamp(280px, 34vw, 560px);
+  --character-phase-max-width: 92%;
+  --character-phase-margin-bottom: 42px;
+  --character-phase-mobile-width: min(76vw, 420px);
+  --character-phase-mobile-margin-bottom: 30px;
+  --character-phase-blink-half-cycle: 650ms;
+}
+
+.misuhui-page .misuhui-phase-wrapper,
+.misuhui-page .phase-banner-wrapper.misuhui-phase-wrapper,
+.young-page .young-phase-wrapper,
+.young-page .phase-banner-wrapper.young-phase-wrapper,
+.yeon-page .yeon-phase-wrapper,
+.yeon-page .phase-banner-wrapper.yeon-phase-wrapper,
+.jeongseo-page .jeongseo-phase-wrapper,
+.jeongseo-page .phase-banner-wrapper.jeongseo-phase-wrapper,
+.kuro-page .kuro-phase-wrapper,
+.kuro-page .phase-banner-wrapper.kuro-phase-wrapper {
+  position: relative !important;
+  display: block !important;
+  width: var(--character-phase-width) !important;
+  max-width: var(--character-phase-max-width) !important;
+  margin: 0 auto var(--character-phase-margin-bottom) !important;
+}
+
+.misuhui-page .misuhui-phase-banner,
+.misuhui-page .misuhui-phase-overlay,
+.young-page .young-phase-banner,
+.young-page .young-phase-overlay,
+.yeon-page .yeon-phase-banner,
+.yeon-page .yeon-phase-overlay,
+.jeongseo-page .jeongseo-phase-banner,
+.jeongseo-page .jeongseo-phase-overlay,
+.kuro-page .kuro-phase-banner,
+.kuro-page .kuro-phase-overlay {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+
+.misuhui-page .misuhui-phase-banner,
+.young-page .young-phase-banner,
+.yeon-page .yeon-phase-banner,
+.jeongseo-page .jeongseo-phase-banner,
+.kuro-page .kuro-phase-banner {
+  position: relative !important;
+  z-index: 1 !important;
+  filter: drop-shadow(0 0 5px rgba(242,251,255,0.08)) drop-shadow(0 0 12px rgba(242,251,255,0.04)) !important;
+}
+
+.misuhui-page .misuhui-phase-overlay,
+.young-page .young-phase-overlay,
+.yeon-page .yeon-phase-overlay,
+.jeongseo-page .jeongseo-phase-overlay,
+.kuro-page .kuro-phase-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  animation: none !important;
+  transition: opacity 220ms ease !important;
+  will-change: opacity, filter;
+}
+
+.misuhui-page .misuhui-phase-overlay,
+.young-page .young-phase-overlay,
+.yeon-page .yeon-phase-overlay,
+.jeongseo-page .jeongseo-phase-overlay {
+  filter: drop-shadow(0 0 7px rgba(242,251,255,0.5)) drop-shadow(0 0 16px rgba(242,251,255,0.18)) !important;
+}
+
+.kuro-page .kuro-phase-overlay {
+  filter: none !important;
+}
+
+.misuhui-page .misuhui-phase-overlay.blink-off,
+.young-page .young-phase-overlay.blink-off,
+.yeon-page .yeon-phase-overlay.blink-off,
+.jeongseo-page .jeongseo-phase-overlay.blink-off,
+.kuro-page .kuro-phase-overlay.blink-off {
+  opacity: 0 !important;
+  filter: none !important;
+}
+
+@media (max-width: 700px) {
+  .misuhui-page .misuhui-phase-wrapper,
+  .misuhui-page .phase-banner-wrapper.misuhui-phase-wrapper,
+  .young-page .young-phase-wrapper,
+  .young-page .phase-banner-wrapper.young-phase-wrapper,
+  .yeon-page .yeon-phase-wrapper,
+  .yeon-page .phase-banner-wrapper.yeon-phase-wrapper,
+  .jeongseo-page .jeongseo-phase-wrapper,
+  .jeongseo-page .phase-banner-wrapper.jeongseo-phase-wrapper,
+  .kuro-page .kuro-phase-wrapper,
+  .kuro-page .phase-banner-wrapper.kuro-phase-wrapper {
+    width: var(--character-phase-mobile-width) !important;
+    margin-bottom: var(--character-phase-mobile-margin-bottom) !important;
+  }
+}
+
+
+/* v62: add the same luminous glow feel to Kuro page while preserving the black blinking full moon. */
+.kuro-page .kuro-phase-banner {
+  filter: drop-shadow(0 0 6px rgba(242,251,255,0.10)) drop-shadow(0 0 14px rgba(242,251,255,0.05)) !important;
+}
+
+.kuro-page .kuro-phase-overlay {
+  filter: drop-shadow(0 0 7px rgba(242,251,255,0.42)) drop-shadow(0 0 16px rgba(242,251,255,0.16)) !important;
+}
+
+.kuro-page .kuro-phase-overlay.blink-off {
+  filter: none !important;
+}
+
+
+/* v63: unify phase-image glow across all character pages.
+   Apply the same soft luminous effect to every base phase banner,
+   and restore a subtle halo to Kuro's blinking black full moon. */
+.misuhui-page .misuhui-phase-banner,
+.young-page .young-phase-banner,
+.yeon-page .yeon-phase-banner,
+.jeongseo-page .jeongseo-phase-banner,
+.kuro-page .kuro-phase-banner {
+  filter: drop-shadow(0 0 6px rgba(242,251,255,0.18)) drop-shadow(0 0 18px rgba(242,251,255,0.08)) !important;
+}
+
+.misuhui-page .misuhui-phase-overlay,
+.young-page .young-phase-overlay,
+.yeon-page .yeon-phase-overlay,
+.jeongseo-page .jeongseo-phase-overlay {
+  filter: drop-shadow(0 0 7px rgba(242,251,255,0.50)) drop-shadow(0 0 16px rgba(242,251,255,0.18)) !important;
+}
+
+.kuro-page .kuro-phase-overlay {
+  filter: drop-shadow(0 0 7px rgba(242,251,255,0.40)) drop-shadow(0 0 16px rgba(242,251,255,0.15)) !important;
+}
+
+.kuro-page .kuro-phase-overlay.blink-off {
+  filter: none !important;
+}
+
+
+/* v64: identity page static/noise effect */
+.screen-profile {
+  isolation: isolate;
+}
+
+.screen-profile::before,
+.screen-profile::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.screen-profile::before {
+  z-index: 0;
+  opacity: 0.13;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.95'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+  mix-blend-mode: screen;
+  animation: profile-noise-shift 0.18s steps(2, end) infinite, profile-noise-flicker 0.55s steps(3, end) infinite;
+}
+
+.screen-profile::after {
+  z-index: 1;
+  opacity: 0.18;
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.05) 0px,
+      rgba(255, 255, 255, 0.05) 1px,
+      rgba(0, 0, 0, 0) 1px,
+      rgba(0, 0, 0, 0) 4px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(255, 255, 255, 0.015) 22%,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(255, 255, 255, 0.02) 78%,
+      rgba(255, 255, 255, 0.045) 100%
+    );
+  mix-blend-mode: screen;
+  animation: profile-scan-drift 7s linear infinite, profile-noise-flicker 0.42s steps(2, end) infinite;
+}
+
+.profile-document,
+.screen-profile .back-button {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes profile-noise-shift {
+  0% { transform: translate3d(0, 0, 0); }
+  25% { transform: translate3d(-1.2%, 0.8%, 0); }
+  50% { transform: translate3d(0.9%, -1%, 0); }
+  75% { transform: translate3d(-0.6%, 1.1%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes profile-scan-drift {
+  0% { transform: translateY(-2%); }
+  100% { transform: translateY(2%); }
+}
+
+@keyframes profile-noise-flicker {
+  0%, 100% { opacity: 0.11; }
+  12% { opacity: 0.18; }
+  28% { opacity: 0.08; }
+  44% { opacity: 0.16; }
+  67% { opacity: 0.10; }
+  82% { opacity: 0.20; }
+}
+
+
+/* v65: selectively obscure some white profile text like damaged CRT record data */
+.screen-profile .obscured-fragment {
+  position: relative;
+  display: inline-block;
+  color: rgba(242, 251, 255, 0.92);
+  text-shadow:
+    0 0 3px rgba(242, 251, 255, 0.28),
+    0 0 7px rgba(242, 251, 255, 0.08);
+  animation: profile-obscured-base 2.35s steps(2, end) infinite;
+}
+
+.screen-profile .obscured-fragment::before,
+.screen-profile .obscured-fragment::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.screen-profile .obscured-fragment::before {
+  color: rgba(255, 72, 72, 0.42);
+  text-shadow: -1px 0 0 rgba(255, 72, 72, 0.32);
+  transform: translateX(0);
+  clip-path: polygon(0 3%, 100% 0, 100% 38%, 0 33%);
+  animation: profile-obscured-red 1.7s steps(2, end) infinite;
+}
+
+.screen-profile .obscured-fragment::after {
+  color: rgba(145, 225, 255, 0.38);
+  text-shadow: 1px 0 0 rgba(145, 225, 255, 0.28);
+  transform: translateX(0);
+  clip-path: polygon(0 55%, 100% 49%, 100% 100%, 0 94%);
+  animation: profile-obscured-cyan 1.25s steps(2, end) infinite;
+}
+
+@keyframes profile-obscured-base {
+  0%, 100% {
+    opacity: 0.96;
+    filter: blur(0);
+    transform: translateX(0);
+  }
+  18% {
+    opacity: 0.72;
+    filter: blur(0.4px);
+  }
+  19% {
+    opacity: 0.36;
+    filter: blur(0.9px);
+    transform: translateX(0.018em);
+  }
+  22% {
+    opacity: 0.92;
+    filter: blur(0.1px);
+    transform: translateX(0);
+  }
+  54% {
+    opacity: 0.84;
+  }
+  55% {
+    opacity: 0.46;
+    filter: blur(0.85px);
+    transform: translateX(-0.02em);
+  }
+  58% {
+    opacity: 0.95;
+    filter: blur(0);
+    transform: translateX(0);
+  }
+  83% {
+    opacity: 0.70;
+    filter: blur(0.45px);
+  }
+}
+
+@keyframes profile-obscured-red {
+  0%, 100% {
+    opacity: 0.08;
+    transform: translateX(0);
+  }
+  10% {
+    opacity: 0.18;
+  }
+  19% {
+    opacity: 0.62;
+    transform: translateX(-0.08em);
+  }
+  20% {
+    opacity: 0.14;
+    transform: translateX(0.02em);
+  }
+  48% {
+    opacity: 0.06;
+  }
+  56% {
+    opacity: 0.56;
+    transform: translateX(0.07em);
+  }
+  57% {
+    opacity: 0.10;
+    transform: translateX(-0.01em);
+  }
+  86% {
+    opacity: 0.36;
+    transform: translateX(-0.045em);
+  }
+}
+
+@keyframes profile-obscured-cyan {
+  0%, 100% {
+    opacity: 0.10;
+    transform: translateX(0);
+  }
+  16% {
+    opacity: 0.42;
+    transform: translateX(0.055em);
+  }
+  17% {
+    opacity: 0.10;
+    transform: translateX(0);
+  }
+  52% {
+    opacity: 0.08;
+  }
+  55% {
+    opacity: 0.46;
+    transform: translateX(-0.05em);
+  }
+  59% {
+    opacity: 0.12;
+    transform: translateX(0);
+  }
+  88% {
+    opacity: 0.28;
+    transform: translateX(0.04em);
+  }
+}
+
+
+/* v66: replace RGB glitch fragments with a typewriter-loading feel on selected profile phrases */
+.screen-profile .obscured-fragment {
+  position: relative;
+  display: inline-block;
+  color: rgba(242, 251, 255, 0.95);
+  text-shadow:
+    0 0 3px rgba(242, 251, 255, 0.20),
+    0 0 8px rgba(242, 251, 255, 0.05);
+  white-space: pre-wrap;
+  animation: none !important;
+  filter: none !important;
+  min-height: 1em;
+}
+
+.screen-profile .obscured-fragment::before,
+.screen-profile .obscured-fragment::after {
+  content: none !important;
+  display: none !important;
+  animation: none !important;
+}
+
+.screen-profile .obscured-fragment.is-typing::after {
+  content: "" !important;
+  display: inline-block !important;
+  position: static !important;
+  width: 0.08em;
+  height: 0.95em;
+  margin-left: 0.12em;
+  vertical-align: -0.08em;
+  background: rgba(242, 251, 255, 0.92);
+  box-shadow: 0 0 4px rgba(242, 251, 255, 0.35);
+  animation: profile-type-caret 0.75s steps(1, end) infinite !important;
+}
+
+@keyframes profile-type-caret {
+  0%, 48% { opacity: 1; }
+  49%, 100% { opacity: 0; }
+}
+
+
+/* v68: type entire white text content on Li Bai profile page, excluding the summary section. */
+.screen-profile .obscured-fragment {
+  color: inherit !important;
+  text-shadow: none !important;
+  animation: none !important;
+  filter: none !important;
+  display: inline !important;
+}
+
+.screen-profile .obscured-fragment::before,
+.screen-profile .obscured-fragment::after {
+  content: none !important;
+  display: none !important;
+  animation: none !important;
+}
+
+.screen-profile .profile-typing-active::after {
+  content: "";
+  display: inline-block;
+  width: 0.08em;
+  height: 0.95em;
+  margin-left: 0.12em;
+  vertical-align: -0.08em;
+  background: rgba(242, 251, 255, 0.92);
+  box-shadow: 0 0 4px rgba(242, 251, 255, 0.32);
+  animation: profile-type-caret 0.72s steps(1, end) infinite;
+}
+
+
+/* v69: profile paragraphs have wider spacing, and scroll-triggered typing keeps mobile layout stable. */
+.profile-document p {
+  margin-bottom: 2.2rem !important;
+}
+
+.profile-document h2 {
+  margin-top: 3.1rem !important;
+  margin-bottom: 1.35rem !important;
+}
+
+.profile-document .profile-report-title {
+  margin-bottom: 2.25rem !important;
+}
+
+.profile-document p.profile-typing-active {
+  opacity: 0.98;
+}
+
+.profile-document p.profile-typed {
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .profile-document p {
+    margin-bottom: 2.05rem !important;
+  }
+
+  .profile-document h2 {
+    margin-top: 2.65rem !important;
+    margin-bottom: 1.15rem !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-document p {
+    margin-bottom: 1.9rem !important;
+  }
+
+  .profile-document h2 {
+    margin-top: 2.35rem !important;
+  }
+}
+
+
+/* v70: queue scroll-triggered profile paragraphs so only one paragraph types at a time. */
+.profile-document p.profile-queued {
+  opacity: 0.72;
+}
