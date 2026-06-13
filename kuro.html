@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Li Bai</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="stage" aria-live="polite">
+    <section class="screen screen-main is-active" id="mainScreen" aria-label="Li Bai main screen">
+      <button class="moon-button" id="moonButton" type="button" aria-label="인물 선택 화면 열기">
+        <img class="moon" src="assets/moon.png" alt="" aria-hidden="true" />
+      </button>
+      <button class="search-enter" id="enterButton" type="button" aria-label="이백 시구 화면 열기">
+        <span class="search-enter-field" aria-hidden="true">
+          <span class="search-enter-text">李白</span>
+          <span class="search-enter-caret">▼</span>
+        </span>
+        <span class="search-enter-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="presentation" focusable="false" aria-hidden="true">
+            <circle cx="10" cy="10" r="5.8"></circle>
+            <path d="M14.6 14.6 L20 20"></path>
+          </svg>
+        </span>
+      </button>
+    </section>
+
+    <section class="screen screen-poem" id="poemScreen" aria-label="Li Bai 시구 화면" aria-hidden="true">
+      <button class="back-button back-main" type="button" data-target="mainScreen" aria-label="메인 화면으로 돌아가기">← Main</button>
+      <div class="noise-layer" aria-hidden="true"></div>
+      <div class="poem-wall" id="poemWall" aria-hidden="true"></div>
+      <button class="warning-card" type="button" data-target="liBaiProfileScreen" aria-label="이백 신원 기록 열기">
+        禁止靠近
+      </button>
+    </section>
+
+
+    <section class="screen screen-profile" id="liBaiProfileScreen" aria-label="이백 신원 기록" aria-hidden="true">
+      <button class="back-button" type="button" data-target="poemScreen" aria-label="시구 화면으로 돌아가기">← Back</button>
+      <article class="profile-document">
+        <p class="profile-report-title">대상자 신원 및 이력 보고서</p>
+
+        <p>대상자: 이백(李白)<br>
+        분류: 센티넬 각성자<br>
+        능력 계열: 원소(바람) 조작계 절단 능력<br>
+        능력 통칭: 커터<br>
+        작성 목적: 대상자의 신원 이력, 각성 경위, 기억 소거 조치, 능력 특성 및 관리상 유의 사항 기록</p>
+
+        <h2>기본 신원</h2>
+
+        <p>출생: 2056 년 추정.<br>
+        생일: 2 월 2 일.<br>
+        현재 연령: 2076 년 기준 만 20 세.</p>
+
+        <p>출생지, 생물학적 부모, 최초 유기 시점 모두 불명임. 대상자는 10 세 무렵 각성 폭주 사고 이후 각성자지원본부에 이송되었으며, 해당 시점에서야 공식 신원 등록이 이루어짐. 주민등록번호 역시 이송 이후 생성됨. 생년은 신체 발달 상태와 추정 연령에 근거하여 2056 년으로 기재됨.</p>
+
+        <p>생일은 실제 출생일이 아니라 주 양육자였던 <span class="obscured-fragment" data-text="중국계 난민 여성">중국계 난민 여성</span>이 대상자를 발견한 날짜임. 해당 날짜가 대상자에게 사실상의 생일로 기능한 것으로 보이며, 신원 등록 시 대상자의 진술에 따라 2 월 2 일을 출생일로 지정함.</p>
+
+        <h2>성장 이력</h2>
+
+        <p>대상자는 부모에게 버려진 뒤 폐허 지대에서 발견된 것으로 추정됨. 발견자는 <span class="obscured-fragment" data-text="중국계 난민 여성">중국계 난민 여성</span>. 해당 여성은 대상자와 생물학적 친족 관계가 없으나, 약 10 년간 대상자를 자식처럼 양육함. 대상자에게 해당 여성은 주 양육자이자 최초의 보호자였음. 대상자는 한국어보다 중국어에 먼저, 그리고 더 자주 노출된 것으로 판단됨. 특히 주 양육자는 대상자에게 <span class="obscured-fragment" data-text="〈把酒問月〉">〈把酒問月〉</span>을 자장가처럼 반복적으로 읊었던 것으로 추정됨.</p>
+
+        <p>10 세 무렵 이능이 발현됨. 발현 직후 폭주 반응 발생함. 폭주 과정에서 주 양육자 사망함. 대상자는 주 양육자의 사체에 감싸인 채 생존 상태로 발견됨. 주 양육자는 대상자의 폭주가 시작된 이후에도 대상자를 끌어안은 상태를 유지한 것으로 보임. 전신 손상에도 불구하고 대상자에게 <span class="obscured-fragment" data-text="〈把酒問月〉">〈把酒問月〉</span>을 반복적으로 읊은 것으로 추정됨. 대상자는 해당 음성을 들으며 수면 상태에 진입함.</p>
+
+        <p>이후 각성자지원본부가 현장을 발견했을 당시 대상자는 주 양육자의 사체에 둘러싸인 채 생존해 있었음. 발견 당시 대상자는 외상보다 정서적 해리 반응이 두드러졌으며, 중국어 단문과 <span class="obscured-fragment" data-text="〈把酒問月〉">〈把酒問月〉</span>의 일부 구절을 반복 발화하였음.</p>
+
+        <h2>각성자아동통합교육센터 이력</h2>
+
+        <p>센터 입소 시점: 2066 년.<br>
+        센터 교육 기간: 약 4 년.<br>
+        센터 수료 시점: 2070 년 초.</p>
+
+        <p>대상자는 각성자아동통합교육센터에서 기초 능력 제어, 가이딩 수용, 집단 생활, 신체 훈련, 폭주 억제 교육을 받음. 교육 초기에는 능력 출력보다 통제 문제가 두드러졌음. 교육 및 훈련 과정에서 주 양육자와 관련된 기억이 주요 트리거로 판명됨. 특히 <span class="obscured-fragment" data-text="최초 폭주 사고">최초 폭주 사고</span>, 여성의 중국어 음성, <span class="obscured-fragment" data-text="〈把酒問月〉">〈把酒問月〉</span>의 특정 구절이 대상자의 폭주 위험을 상승시키는 것으로 확인됨.</p>
+
+        <p>능력 사용 시 대상자는 외부 대상을 절단하는 대신 자기 자신을 향해 능력을 사용하는 경향을 보임. 이는 최초 발현 당시 주 양육자를 스스로 살해했다는 기억이 능력의 기원으로 각인된 결과인 것으로 추정됨. 대상자에게 능력 사용은 곧 죄책감의 재현이며, 해당 죄책감은 자기 손상 충동으로 전환됨.</p>
+
+        <p>센터는 해당 반응을 장기 훈련만으로 제어하기 어렵다고 판단함. 이에 따라 <span class="obscured-fragment" data-text="주 양육자 관련 기억 일부에 대한 기억 소거 조치">주 양육자 관련 기억 일부에 대한 기억 소거 조치</span>가 결정됨. 소거 범위는 주 양육자의 얼굴, 사망 장면, 최초 폭주 당시의 감각 기억, <span class="obscured-fragment" data-text="〈把酒問月〉">〈把酒問月〉</span>과 양육자의 직접적 연결 관계를 포함함. 다만 시구에 반응은 완전 소거되지 않았으며, 정서 잔향이 잔존함.</p>
+
+        <p>기억 소거 이후 대상자는 빠르게 안정화됨. 능력 제어 능력, 가이딩 수용도, 명령 반응성이 모두 괄목할 수준으로 개선됨. 센터는 대상자를 준수하게 수료함. 다만 해당 안정화는 치료의 결과가 아니라 트리거 차단과 행동 재조건화의 결과에 가까움.</p>
+
+        <h2>훈련소 이력</h2>
+
+        <p>훈련소 체류 기간: 2070 년- 2073 년.<br>
+        자대 배치: 2074 년.</p>
+
+        <p>대상자는 센터 수료 이후 훈련소에 입소함. 훈련소 체류 기간은 만 14 세부터 만 17 세까지에 해당함. 해당 기간 동안 대상자는 능력 제어, 실전 대응, 가이드 연동, 명령 체계 적응, 폭주 진압 상황 대응 훈련을 받음.</p>
+
+        <p>기억 소거 조치 이후 대상자는 모든 훈련에서 준수한 결과를 출력함. 대상자는 자신의 능력을 의지대로 사용하고 제어할 수 있는 수준까지 도달했으며, 가이드와의 연결 또한 비교적 안정적으로 수용함. 신체 조건 역시 능력 사용 시 발생하는 부담을 견딜 수 있는 수준으로 판단됨. 2074 년 부대 배치가 승인됨.</p>
+
+        <h2>능력 특성</h2>
+
+        <p>분류: 기류 조작계 절단 능력.<br>
+        주요 특성: 시야 내 공간에 보이지 않는 절단면을 생성함.</p>
+
+        <p>대상자의 커터는 단순히 바람을 날카롭게 만들어 쏘는 능력이 아님. 대상자는 공기와 기류를 압축하여 시야 내 특정 공간에 보이지 않는 절단면을 형성함. 절단면을 세워 칼날처럼 사용하며, 접촉한 물체를 즉시 절단함. 대상자의 표현에 따르면 "선이 생기고, 선이 지나가면 갈라지는” 방식임.</p>
+
+        <p>10 세 발현 당시 대상자는 통나무 굵기의 건조 목재를 단회 절단할 수 있는 출력을 보였음. 현재는 해당 출력을 기본 출력으로 안정적 재현 가능함. 즉 건조 목재 및 피질골 수준의 유기성 경조직을 절단할 수 있는 위력을 통상 출력으로 운용함.</p>
+
+        <p>대상자의 능력은 정밀도보다 위험성이 먼저 두드러지는 유형임. 절단면이 육안으로 확인되지 않기 때문에 주변 인원이 피하기 어렵고, 정서 불안정 시 시야 내 다중 지점에 비의도적 절단면이 발생할 수 있음. 특히 폐쇄 공간에서 위험성이 상승함. 이에 따라 대상자의 폐쇄 공간 단독 진입은 금지됨. 현장 투입 시 가이드 또는 통제 가능 인원 동행이 요구됨.</p>
+
+        <h2>기억 소거 이후 명령 반응</h2>
+
+        <p>기억 소거 이후 대상자는 능력 통제 면에서 안정화되었으나, 판단 능력과 자기 결정 능력에는 결함을 보임. 대상자는 어떤 문제에 대해 스스로 판단해야 하는 상황에서 불안과 공복감을 호소함. 반대로 명령이 주어질 경우 빠르게 안정됨.</p>
+
+        <p>대상자는 고민 없이 명령을 따르는 것을 선호함. 이는 기억 소거 과정과 이후의 재교육 과정에서 명령 체계에 대한 조건화가 강하게 이루어진 영향으로 판단됨. 대상자에게 명령은 판단을 대신하는 문장임.</p>
+
+        <p>대상자는 상급자의 명령에 거의 반항하지 않음. 명령의 도덕성, 정당성, 필요성을 자발적으로 검토하는 경향은 낮음. 다만 이는 충성심이 강해서가 아니라 판단의 부담을 회피하기 위한 행동 양식에 가까운 것으로 추정됨. 둘 이상의 명령이 서로 상충하는 상황에서는 불안정성이 상승함. 상충 명령, 선택 강요, 딜레마 상황에 노출되지 않도록 관리할 필요가 있음.</p>
+
+        <h2>능력 제어 관련 잔존 기억</h2>
+
+        <p>기억 소거 이후에도 대상자의 심층 기억에는 일부 중국어 문장과 시구가 잔존함. 특히 <span class="obscured-fragment" data-text="“人攀明月不可得”">“人攀明月不可得”</span>은 대상자의 폭주를 일시적으로 억제할 수 있는 제어 문장으로 확인됨. 해당 문장은 <span class="obscured-fragment" data-text="〈把酒問月〉">〈把酒問月〉</span>의 일부이며, 대상자가 잠결에 무의식적으로 발화한 기록이 있음.</p>
+
+        <p>다만 해당 문장은 통제 수단이면서 동시에 위험 요소임. 반복 사용 시 기억 복원, 정서 붕괴, 2차 폭주 가능성이 있음. 대상자는 해당 문장의 의미를 알지 못한다고 진술하나, 폭주 시 해당 문장을 들으면 능력 출력이 저하되고, 칼날의 방향성이 상실되며, 일시적으로 행동이 멈추는 반응을 보임. 해당 문장은 현장 진압 보조 수단으로만 제한적으로 사용해야 함. 일상 상황, 훈련 상황, 사적 관계 안에서의 반복 사용은 금지됨.</p>
+
+        <h2>기억 공백에 대한 반응</h2>
+
+        <p>대상자는 자신의 기억에 빈틈이 있다는 사실을 평소에는 문제 삼지 않음. “기억나지 않는다”는 사실을 자연스러운 일로 받아들이며, 과거에 대해 깊게 추궁하지 않음. 이는 기억 소거 이후 재구축된 인식 구조로 판단됨. 그러나 타인의 질문, 특정 호명, 중국어 문장, <span class="obscured-fragment" data-text="〈把酒問月〉">〈把酒問月〉</span> 관련 자극으로 인해 기억 공백을 자각하려는 순간 신체 반응이 급격히 악화됨.</p>
+
+        <p>주요 반응은 허기임. 대상자는 <span class="obscured-fragment" data-text="기억나지 않는 상실">기억나지 않는 상실</span>을 생리적 공복으로 오인함. 실제 음식물 섭취 여부와 무관하게 “배고프다”고 호소하며, 초코바, 젤리, 포도당 캔디 등 단것을 섭취하려 함. 해당 섭취 행위는 단순한 식욕 충족이 아니라 기억 공백으로 인해 발생하는 내적 결핍을 임시로 덮는 행위인 것으로 추정됨.</p>
+
+        <p>기억 공백 자각이 심화될 경우 허기 반응은 자해 반응으로 이어질 수 있음. 대상자는 자신이 무엇을 잃었는지 떠올리지 못한 채, 그 결핍의 원인을 자기 내부에서 찾으려는 양상을 보임. 이때 커터의 절단면이 흉부, 팔, 목 주변에 근접 생성되는 사례가 확인됨. 대상자는 이를 의식적으로 시도하지 않았다고 진술하나, 심박 상승과 함께 자기 절단 시도가 반복됨.</p>
+
+        <h2>관리상 유의 사항</h2>
+
+        <p>하나, 폐쇄 공간 단독 진입 금지됨.<br>
+        둘, 현장 투입 시 가이드 또는 통제 가능 인원 동행 필요함.<br>
+        셋, 중국어 음성 자극 사용 시 사전 승인 필요함.<br>
+        넷, <span class="obscured-fragment" data-text="〈把酒問月〉">〈把酒問月〉</span> 전문 낭송 금지됨.<br>
+        <span class="obscured-fragment" data-text="“人攀明月不可得”">“人攀明月不可得”</span>은 현장 진압 보조 수단으로만 제한 사용해야 함.<br>
+        여섯, 주 양육자의 얼굴, 사망 정황, <span class="obscured-fragment" data-text="최초 폭주 사고">최초 폭주 사고</span>를 직접 환기하는 질문 금지됨.<br>
+        일곱, 대상자의 기억 공백을 추궁하거나 의심하게 만드는 대화 금지됨.<br>
+        여덟, 상충 명령 및 딜레마 상황 노출을 최소화해야 함.</p>
+
+        <h2>종합 소견</h2>
+
+        <p>대상자는 안정화된 고위험 각성자임. 능력 출력은 우수하고 명령 반응성도 높으나, 자기 판단과 기억 공백에 대한 내성이 낮음. 기억 소거 이후 표면적 안정은 확보되었으나, 상실의 감각은 완전히 제거되지 않았음.</p>
+
+        <p>대상자의 허기는 생리적 공복이 아니라 <span class="obscured-fragment" data-text="기억나지 않는 상실">기억나지 않는 상실</span>의 잔존 반응으로 판단됨. 대상자는 자신이 무엇을 잃었는지 알지 못한 채 지속적으로 결핍을 호소함. 해당 결핍은 허기, 중국어 잠꼬대, 명령 선호, 자기 손상 충동으로 변형되어 나타남.</p>
+
+        <p>대상자의 안정은 망각 위에 성립되어 있음. 기억 공백을 의심하지 않는 것은 단순한 무지나 둔감함이 아니라 센터에서 이루어진 기억 소거 및 재조건화의 결과임. 따라서 대상자의 기억을 회복시키려는 시도는 치료가 아니라 붕괴의 계기가 될 가능성이 높음.</p>
+      </article>
+    </section>
+
+    <section class="screen screen-characters" id="charactersScreen" aria-label="인물 선택 화면" aria-hidden="true">
+      <button class="back-button back-main" type="button" data-target="mainScreen" aria-label="메인 화면으로 돌아가기">← Main</button>
+      <div class="character-moon-wrap" aria-hidden="true">
+        <img class="character-moon" src="assets/moon.png" alt="" />
+      </div>
+      <nav class="character-menu" aria-label="인물 페이지 선택">
+        <button class="character-name character-misuhui" type="button" data-target="misuhuiScreen">미수희</button>
+        <button class="character-name character-young" type="button" data-target="youngScreen">영</button>
+        <button class="character-name character-yeon" type="button" data-target="yeonScreen">연</button>
+        <button class="character-name character-jeongseo" type="button" data-target="jeongseoScreen">정서</button>
+        <button class="character-name character-kuro" type="button" data-target="kuroScreen">쿠로</button>
+      </nav>
+    </section>
+
+    <section class="screen screen-detail screen-misuhui" id="misuhuiScreen" aria-label="미수희 페이지" aria-hidden="true">
+      <button class="back-button" type="button" data-target="charactersScreen" aria-label="인물 선택 화면으로 돌아가기">← Back</button>
+      <div class="misuhui-page">
+        <div class="phase-banner-wrapper misuhui-phase-wrapper" aria-hidden="true">
+          <img class="phase-banner misuhui-phase-banner" src="assets/misuhui-phase-banner.png" alt="달의 위상" />
+          <img class="phase-banner misuhui-phase-overlay" src="assets/misuhui-phase-crescent-overlay.png" alt="" />
+        </div>
+
+        <div class="sequential-text" data-sequence="misuhui">
+          <p class="misuhui-paragraph sequence-step is-visible">姐姐 몇 번 발음해 보지 못한 단어입니다 발음할 일이 없었으니까요 저를 불쌍히 여기는 누군가가 있다는 것 무슨 기분인지 잘은 모르겠습니다 횡격막이 떨리고 딸꾹질이 날 것 같은 기분 싫은 기분은 아닙니다 잘은 모르겠지만요 누나는 아주 단단해 보입니다 다른 사람을 불쌍히 여길 수 있다는 건 아주 강하다는 의미이겠지요 단단해 보이는 누나에게는 이백이 연약해 보이나 봐요 <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></p>
+
+          <div class="dialogue-row sequence-step">
+            <div class="speaker">미수희</div>
+            <div class="dialogue-text">얘 또 여기서 자고 있네. <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></div>
+          </div>
+
+          <p class="misuhui-paragraph sequence-step">쿨쿨 누나의 음성은 새파란 초승달 같습니다 나비에게는 아주 시린 감각이겠지만 이백이는 나비가 아니니까요 누나의 날카로움 그건 아마도 숨기고 싶은 품고 사는 버리지 못하는 XX 때문일 것 아차차 모르는 척해야 해요 비밀을 감추고 있는 것은 아름답습니다 달의 뒷면을 보셨나요 아무도 달의 뒷면을 이야기하지 않아요 저도 그렇습니다 그리고 누나 역시도 <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></p>
+
+          <div class="dialogue-row sequence-step">
+            <div class="speaker">이백</div>
+            <div class="dialogue-text">어라, 저 또 자고 있었어용? <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></div>
+          </div>
+
+          <p class="misuhui-paragraph sequence-step">누나는 어른입니다 복도에 쓰러져 자고 있는 저를 깨울 때마다 입에 초콜릿 하나씩 물려 줘서 어른인 것은 아니고요 누나가 보여 주는 모습이 전부가 아니라는 것을 어렴풋이 알고 있습니다 누나가 어딘가에 두고 온 무엇을 저는 알지 못하지만요 짐작하지 않기로 합니다 이것은 누나와 나만의 약속 무언으로 합의한 약속입니다 초콜릿을 똑 분질러 누나에게 건네 봅니다 누나는 이백이의 친절을 받아 줄까요 누나의 표정을 읽지 않기로 합니다 이백이의 시선은 누나의 손끝으로만 향합니다 <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></p>
+
+          <div class="dialogue-row sequence-step">
+            <div class="speaker">이백</div>
+            <div class="dialogue-text">누나, 초콜릿이 너무 많아용. 이백이 도와주세용.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen-detail screen-yeon" id="yeonScreen" aria-label="연 페이지" aria-hidden="true">
+      <button class="back-button" type="button" data-target="charactersScreen" aria-label="인물 선택 화면으로 돌아가기">← Back</button>
+      <div class="yeon-page">
+        <div class="phase-banner-wrapper yeon-phase-wrapper" aria-hidden="true">
+          <img class="phase-banner yeon-phase-banner" src="assets/yeon-phase-banner.png" alt="달의 위상" />
+          <img class="phase-banner yeon-phase-overlay" src="assets/yeon-phase-fullmoon-overlay.png" alt="" />
+        </div>
+
+        <div class="sequential-text" data-sequence="yeon">
+          <p class="yeon-paragraph sequence-step is-visible">언제부터인가 저의 머리에는 빈 구멍이 있습니다 알 수 없는 구멍입니다 머리를 흔들면 타닥타닥 소리가 나는 것만 같아요 정수리에 달려 있는 심지 탓 태생이 시한폭탄이라 데굴데굴 구르는 인생 센터에서도 훈련소에서도 사람들은 어려운 말만 해요 쉬운 게 좋아 좋아 좋아 참을 수 없는 허기 초코바 하나만 더 먹고 싶어요 아아 주머니 뒤져도 털어서 나오는 건 없을 때 이게 내 머리인지 옷에 달린 주머니인지 분간할 수 없을 때 해일 덮치는 것처럼 아주 커다란 달이 뜨는 기분 보세요 만월이에요 <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></p>
+
+          <div class="dialogue-row sequence-step">
+            <div class="speaker">연</div>
+            <div class="dialogue-text">…… 백, 이백! 이 새끼, 정신 안 차려? <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></div>
+          </div>
+
+          <p class="yeon-paragraph sequence-step">아야 정수리에 달린 심지 뽑혀요 아니 제 두피가 뽑혀요 불붙은 도화선 싹둑 잘라 주면 좋을 텐데 우리 중위님은 친절하게도 이백이 대가리를 퍽 머리채를 확 정신이 확 들고 좋습니다 어느새 달이 졌네요 어라 근데 제가 달 이야기를 했던가요 따끔따끔 머리가 아파 우선은 망각하기로 합니다 망각은 편해요 편해질 수 있는 방법이라고 합니다 언젠가 하얀 가운을 입은 누군가 그렇게 말했는데요 어라 그게 언제였더라 <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></p>
+
+          <div class="dialogue-row sequence-step">
+            <div class="speaker">이백</div>
+            <div class="dialogue-text">허걱, 중위님, 언제 오셨어용? 오신 줄 몰랐어용. 진짜, 진짜로! <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></div>
+          </div>
+
+          <p class="yeon-paragraph sequence-step">중위님이 오셨으니 이백이는 구석으로 가야 합니다 곧 덜미 잡혀 먼지 탈탈 떨어지게 얻어맞을 예정이거든요 중위님 손에는 구겨진 포장지들이 가득 아마도 제가 질질 흘리고 다닌 허물들인가 봐요 중위님 저한테 오시라고 흘리고 다닌 건 아니고요 아닐걸요 아닐 거야 아닌가? 그런데 왜 제 양팔에는 피가 뚝뚝 흐르고 있을까요 중위님 저 사고 하나 친 것 같아요 이제 어떡해요? <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></p>
+
+          <div class="dialogue-row sequence-step">
+            <div class="speaker">이백</div>
+            <div class="dialogue-text">중위님, 명령을 내려 주세요. 제발요. <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></div>
+          </div>
+
+          <div class="dialogue-row sequence-step">
+            <div class="speaker">연</div>
+            <div class="dialogue-text">눈 감고 서른까지 세. 다 세면 중위님이 세미나 다녀오는 길에 사 온 젤리 무슨 맛일지나 떠올리고 있어.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen-detail screen-young" id="youngScreen" aria-label="영 페이지" aria-hidden="true">
+      <button class="back-button" type="button" data-target="charactersScreen" aria-label="인물 선택 화면으로 돌아가기">← Back</button>
+      <div class="young-page">
+        <div class="phase-banner-wrapper young-phase-wrapper" aria-hidden="true">
+          <img class="phase-banner young-phase-banner" src="assets/young-phase-banner.png" alt="달의 위상" />
+          <img class="phase-banner young-phase-overlay" src="assets/young-phase-quarter-overlay.png" alt="" />
+        </div>
+
+        <div class="young-sequential-text sequential-text" id="youngSequentialText" data-sequence="young">
+          <p class="young-paragraph young-step is-visible">채워지지 않는 결핍이 있습니다 위장을 가득 채우고도 텅 비어 있는 느낌 허기는 예고 같은 것 없이 찾아오고 이백이는 허기에 아주아주 취약합니다 무언가를 입에 넣어야만 해요 그렇지 않으면 펑 터져 버릴 것이라는 예감 이런 예감은 뭉툭합니다 뭉툭하고 둔탁해요 두개골이 터어엉 울리는 감각 아득해질 때 저를 구원하는 건 금성을 닮은 레몬사탕 금성과 레몬사탕은 닮았습니다 노랗고 예쁘고 반짝반짝 사탕을 혀로 굴리면서 생각합니다 아작아작 바삭바삭 씹어 먹던 버릇은 언제부터 잃어버렸을까요 <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></p>
+
+          <div class="dialogue-row young-step">
+            <div class="speaker">영</div>
+            <div class="dialogue-text">사탕은 녹여 드세요. 그것 씹으면 골 아파. <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></div>
+          </div>
+
+          <p class="young-paragraph young-step">상현을 닮은 입매를 생각하게 됩니다 속도 없이 웃고 있는 얼굴이 조오금 아주 조금 미웠던 것도 같습니다 할 말이 없을 때는 웃어요 가까워지고 싶지 않다는 속마음 감추려고 또 웃어요 입꼬리를 올리는 일이 가장 쉽습니다 편한 옷을 입는 기분이에요 영을 보면 저는 그런 자신을 들킨 것만 같습니다 영은 이백이 마음을 알까요 레몬사탕 건네던 손 하얗게 질려 있었던 손가락 위장이 비었는지 뇌가 비었는지 어딘가 텅텅 여백 지니고 사는 이백이를 영은 이해하고 있을까요 레몬사탕의 새콤함 혀를 굴리면서 생각합니다 이렇게 물고 있으니 혓바닥이 녹는 것만 같아요 금성에는 황산으로 된 비가 내린다고 합니다 황산은 아마 모든 것을 녹여 버릴 거예요 레몬사탕과 금성에 대해 생각합니다 예쁘고 유해한 그렇지만 예쁜 <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></p>
+
+          <p class="young-paragraph young-step">언젠가 인적 드문 복도에서 울음을 터트린 등을 보았을 때 어쩌면 이백이는 꽤 당황했을지도 모르겠어요 제 주머니에는 바스락바스락 노오란 플라스틱 포장지가 가득합니다 왜 사탕 포장지를 버리지 못했을까요 이유를 고민하는 것은 골치가 아픕니다 아아 생각은 힘들어요 바스락바스락 포장지들을 만지작거리다 초코바 하나를 꺼내 영의 발치에 놓았어요 영의 여백이 무엇인지 알 수는 없습니다 울음을 터트린 이유 같은 것 물어보면 안 되겠지요 알게 되면 이해해 버릴 것 같으니까요 이해해 버리면 미워할 수 없으니까요 저는 아직 영을 미워하고 싶었나 봅니다 <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></p>
+
+          <div class="dialogue-row young-step">
+            <div class="speaker">이백</div>
+            <div class="dialogue-text">초코바는 씹어 먹어용. 녹여 먹으면 맛없어. <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></div>
+          </div>
+
+          <p class="young-paragraph young-step">사탕을 녹여 먹는 버릇은 아마도 그때를 기원으로 합니다 혓바닥이 따끔따끔 따끔한 새콤함에 집중하다 보면 허기를 잊게 됩니다 아아 이백이는 모르겠어요 이레마다 영을 찾아 배회하는 두 발 기어이 영을 찾아 마주치면 영은 또 상현 같은 입매로 <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></p>
+
+          <div class="dialogue-row young-step">
+            <div class="speaker">영</div>
+            <div class="dialogue-text">사탕 드실래요?</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen-detail screen-jeongseo" id="jeongseoScreen" aria-label="정서 페이지" aria-hidden="true">
+      <button class="back-button" type="button" data-target="charactersScreen" aria-label="인물 선택 화면으로 돌아가기">← Back</button>
+      <div class="jeongseo-page">
+        <div class="phase-banner-wrapper jeongseo-phase-wrapper" aria-hidden="true">
+          <img class="phase-banner jeongseo-phase-banner" src="assets/jeongseo-phase-banner.png" alt="달의 위상" />
+          <img class="phase-banner jeongseo-phase-overlay" src="assets/jeongseo-phase-overlay.png" alt="" />
+        </div>
+
+        <div class="sequential-text" data-sequence="jeongseo">
+          <p class="jeongseo-paragraph sequence-step is-visible">지금보다 이백이가 조금 아주아주 조오금 철이 없었을 때였습니다 이공칠공 처음 발을 들인 훈련소는 낯설지 않았어요 어려울 것이 아무것도 없었습니다 시키는 대로 하면 그만이니까요 아아 어려운 것이 하나 있었습니다 훈련 중에 배가 고프면 참을 수가 없었는데요 그때도 지금도 속이 허전했어요 바스락바스락 아그작아그작 교관님 몰래 초코바를 씹어 먹다 눈이 마주친 <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></p>
+
+          <div class="dialogue-row sequence-step">
+            <div class="speaker">정서</div>
+            <div class="dialogue-text">야, 이 띨빵아, 처먹으려면 안 걸리게 하든가. <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></div>
+          </div>
+
+          <p class="jeongseo-paragraph sequence-step">정서는 입이 참 거칠었는데요 예쁜 얼굴만큼 말을 예쁘게 해 주면 좋을 것 같다고 생각했습니다 띨빵이 뭐지 아무래도 욕인 것 같아요 정서의 표정이 좋지 않았습니다 한심하다는 눈빛 읽지 못할 정도로 이백이는 멍청하지 않았어요 머리는 좀 비어 있었지만 아니 아니 아니 아니 배가 비어 있었지만 정서는 이상합니다 이백이가 싫으면 뒤통수만 갈기면 될 텐데요 한심해서 못 견딜 것 같으면 무시하면 될 텐데요 정서는 이백이를 사람으로 취급해 줍니다 째깍째깍 정서도 저도 시한폭탄 아니었나요 언제 터질지 모르는 아아 센터에서 배웠던 것들이 무색해지려 합니다 이런 건 어려워요 좋지 않아 <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></p>
+
+          <div class="dialogue-row sequence-step">
+            <div class="speaker">이백</div>
+            <div class="dialogue-text">배고파, 배고파, 배고파. <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></div>
+          </div>
+
+          <p class="jeongseo-paragraph sequence-step">너무너무 배가 고파서 이백이 정수리에 달린 심지 타닥타닥 타기 시작할 때 시야가 흐려지고 머리가 핑 자꾸 돌았을 때 주머니에 젤리를 몰래 넣어 줬던 사람 그도 정서입니다 정서는 이상해요 정서의 속눈썹이 그늘을 만들고 있습니다 일렁이는 그늘은 하현을 닮았어요 어라 제가 정서의 눈을 이렇게 바라봤던 적이 있었던가요 신맛 나는 젤리는 이백의 정신을 돌아오게 하기 충분했습니다 젤리를 씹었어요 열 번 스무 번 오십 번 거짓말 조금만 보태서 이백 번 아무리 씹어도 정서의 속눈썹이 아른거릴 즈음 <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></p>
+
+          <p class="jeongseo-paragraph sequence-step">먼저 훈련소를 떠난 것은 이백이었습니다 퇴소하는 날 정서를 보지 못했어요 먼저 가서 기다릴게 다시 만나 이런 흔한 말도 정서에게 남길 수 없었습니다 정서를 떠올리면 속이 울렁거려요 그날의 젤리가 아직도 소화되지 못한 걸까요 알 수 없습니다 정서는 이백이를 기억할까요 정서의 속눈썹에는 반쪽 달이 아른거리고 반쪽 달을 떠올리면 속이 울렁거립니다 아마도 배가 고픈 것 같아요 상념이 길었습니다 그리고 다시 이공칠육 이백이는 정서를 만날 수 있었어요 마침내 <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></p>
+
+          <div class="dialogue-row sequence-step">
+            <div class="speaker">정서</div>
+            <div class="dialogue-text">내 젤리 갖고 나른 띨빵 새끼 여기에 있었네. 어디 맞을래? 정강이, 복부, 뒤통수, 골라. 좀 아프고 좀 좆같아도 참아. 젤리 쥐여 줄 테니까.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen-detail screen-kuro" id="kuroScreen" aria-label="쿠로 페이지" aria-hidden="true">
+      <button class="back-button" type="button" data-target="charactersScreen" aria-label="인물 선택 화면으로 돌아가기">← Back</button>
+      <div class="kuro-page">
+        <div class="phase-banner-wrapper kuro-phase-wrapper" aria-hidden="true">
+          <img class="phase-banner kuro-phase-banner" src="assets/kuro-phase-banner.png" alt="달의 위상" />
+          <img class="phase-banner kuro-phase-overlay" src="assets/kuro-phase-fullmoon-overlay.png" alt="" />
+        </div>
+
+        <div class="sequential-text" data-sequence="kuro">
+          <p class="kuro-paragraph sequence-step is-visible">펑요와 토모다치 나란히 붙어 다니던 실패작 두 개 도화선은 젖어 버려 불도 붙지 않거나 불붙이자마자 펑 터져 버리려 하거나 근데요 하얀 가운 입은 사람들은 왜 우리의 잘못이라고 하는 걸까 폭탄이 스스로 절제할 수 있나요 터지는 걸 조정할 수 있나요 열 살의 이백이는 알지 못했습니다 열두 살이 될 때까지도 실험은 아팠어요 아야 머리가 깨질 것 같아요 우리는 물 먹은 솜 아니 물에 흠뻑 젖어 버린 수채화 무엇을 그렸는지 알 수 없는 추상화 어라 왜 우리라는 단어가 익숙할까요 알 수 없습니다 <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></p>
+
+          <div class="dialogue-row sequence-step">
+            <div class="speaker">쿠로</div>
+            <div class="dialogue-text">있잖아, 우리는 실패한 걸까? 그렇다면 우리는 무엇으로 남아야 하지? <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></div>
+          </div>
+
+          <p class="kuro-paragraph sequence-step">우리는 무엇이 될 수 있을까요 우리는 심오한 것을 알지 못했습니다 주사가 드나드는 정맥 멍이 든 핏줄 보기 흉했어요 이걸 핏줄이라고 부른다는 건 어떻게 알게 되었더라 머리가 또 띠잉 울리기 시작합니다 이건 언제의 기억이지 고사리 같은 손으로 초코바를 똑 분지릅니다 배가 고프지 않았어요 아니 배가 고팠습니다 누가? 우리가? 바이는 하얗다는 뜻 쿠로는 까맣다는 뜻 서로의 손금 위에 손끝으로 그렸던 문자 이건 언제의 기억일까요 우리가? <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></p>
+
+          <div class="dialogue-row sequence-step">
+            <div class="speaker">이백</div>
+            <div class="dialogue-text">몰라아, 그래도 아직 죽지는 않았잖아. <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></div>
+          </div>
+
+          <p class="kuro-paragraph sequence-step">우리를 우리라고 불렀던 것은 예전의 일입니다 쿠로를 다시 만났을 때 알았어요 고사리 같은 손은 이제 더는 없고 핏줄이 불거진 어른의 손등이 초코바를 쥐고 있습니다 펑요 발음이 어색합니다 성조도 발음도 틀리지 않았지만 너무나 어색했어요 이만큼 자란 쿠로를 바라보는 것도 어색합니다 잃어버린 것을 되찾은 기분 이것은 좋은 울렁거림입니다 구역질은 아니었어요 <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></p>
+
+          <div class="dialogue-row sequence-step">
+            <div class="speaker">쿠로</div>
+            <div class="dialogue-text">네가 발음하는 것들을 알려 줘. 하나씩 교환하는 거야. <button class="sequence-next-inline" type="button" aria-label="다음 문단 보기"><img src="assets/next-icon.png" alt="" aria-hidden="true" /></button></div>
+          </div>
+
+          <p class="kuro-paragraph sequence-step">울렁거림을 이해할 수는 없습니다 이백이에게는 이해하지 못하는 것들이 많아요 이해를 요구하는 일들은 어렵습니다 어려우면 머리가 아프니까요 하지만 쿠로를 보면 띠잉 울리던 두개골보다 속이 울렁울렁 요동칩니다 우리의 첫 교환물은 무엇이 될까요 언젠가 펑요와 토모다치를 교환하는 미래 아니 과거 아니 꿈 꿈은 멍입니다 멍은 꿈이라는 의미입니다 쿠로의 입술을 읽어 봅니다 유-메 이것은 현재일까요</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

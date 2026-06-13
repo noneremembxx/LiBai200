@@ -14,6 +14,54 @@ const poem = [
   '唯願當歌對酒時 月光長照金樽裏'
 ];
 
+const screenRoutes = {
+  index: 'mainScreen',
+  main: 'mainScreen',
+  home: 'mainScreen',
+  characters: 'charactersScreen',
+  misuhui: 'misuhuiScreen',
+  young: 'youngScreen',
+  yeon: 'yeonScreen',
+  jeongseo: 'jeongseoScreen',
+  kuro: 'kuroScreen'
+};
+
+const screenToPath = {
+  mainScreen: 'index.html',
+  charactersScreen: 'index.html#characters',
+  misuhuiScreen: 'misuhui.html',
+  youngScreen: 'young.html',
+  yeonScreen: 'yeon.html',
+  jeongseoScreen: 'jeongseo.html',
+  kuroScreen: 'kuro.html'
+};
+
+const routeAliases = {
+  '미수희': 'misuhui',
+  '영': 'young',
+  '연': 'yeon',
+  '정서': 'jeongseo',
+  '쿠로': 'kuro'
+};
+
+function getInitialScreenFromLocation() {
+  const pathName = window.location.pathname.split('/').pop().replace(/\.html$/i, '');
+  const hashName = window.location.hash.replace(/^#\/?/, '').trim();
+  const routeName = routeAliases[hashName] || hashName || pathName || 'index';
+
+  return screenRoutes[routeName] || 'mainScreen';
+}
+
+function updateAddressForScreen(screenId) {
+  const path = screenToPath[screenId];
+  if (!path) return;
+
+  const current = `${window.location.pathname.split('/').pop()}${window.location.hash}`;
+  if (current === path) return;
+
+  window.history.pushState({ screenId }, '', path);
+}
+
 
 const profileScreen = document.getElementById('liBaiProfileScreen');
 const profileDocument = profileScreen ? profileScreen.querySelector('.profile-document') : null;
@@ -292,7 +340,7 @@ function stopProfileDocumentTyping() {
   restoreProfileTypingTargets();
 }
 
-function showScreen(screenId) {
+function showScreen(screenId, options = {}) {
   screens.forEach((screen) => {
     const isActive = screen.id === screenId;
     screen.classList.toggle('is-active', isActive);
@@ -303,6 +351,10 @@ function showScreen(screenId) {
     startProfileDocumentTyping();
   } else {
     stopProfileDocumentTyping();
+  }
+
+  if (!options.skipHistory) {
+    updateAddressForScreen(screenId);
   }
 }
 
@@ -325,6 +377,14 @@ function fillPoemWall() {
 
 fillPoemWall();
 window.addEventListener('resize', fillPoemWall);
+
+window.addEventListener('popstate', () => {
+  showScreen(getInitialScreenFromLocation(), { skipHistory: true });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  showScreen(getInitialScreenFromLocation(), { skipHistory: true });
+});
 
 enterButton.addEventListener('click', () => {
   showScreen('poemScreen');
